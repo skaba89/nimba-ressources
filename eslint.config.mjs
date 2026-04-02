@@ -1,0 +1,25 @@
+import { defineConfig, globalIgnores } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
+
+const eslintConfig = defineConfig([
+  ...nextVitals,
+  ...nextTs,
+  // Override default ignores of eslint-config-next.
+  globalIgnores([
+    // Default ignores of eslint-config-next:
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+    // Internal tools (not part of the app):
+    "skills/**",
+    "generate_*.js",
+    "generate_*.ts",
+    "generate_*.py",
+    "take_screenshots.*",
+    "capture.py",
+  ]),
+]);
+
+export default eslintConfig;

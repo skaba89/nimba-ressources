@@ -15,16 +15,20 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "InvestFlow Africa — Pilotage Intelligent de Vos Investissements",
+  title: "Nimba Ressources Company SA-CV — Investissement & Développement en Guinée",
   description:
-    "Plateforme SaaS de gestion d'investissements en Afrique. Centralisez vos données, analysez la rentabilité et présentez vos projets aux investisseurs.",
+    "Nimba Ressources Company SA-CV est une société d'investissement guinéenne spécialisée dans le développement de projets, le financement structuré et l'ingénierie financière pour le développement durable de la Guinée.",
   keywords: [
     "investissement",
-    "Afrique",
-    "ROI",
-    "gestion de projet",
-    "dashboard",
-    "finance",
+    "Guinée",
+    "Conakry",
+    "Nimba Ressources",
+    "financement structuré",
+    "développement durable",
+    "mines",
+    "énergie",
+    "agro-industrie",
+    "NRC SA-CV",
   ],
 };
 

@@ -11,51 +11,131 @@ import {
 } from "recharts";
 import React from "react";
 import {
-  BarChart3, FlaskConical, Handshake, Briefcase, TrendingUp, Zap, Building2,
-  Search, Lightbulb, FileSpreadsheet, CheckCircle2, Rocket,
-  Link2, X,
-  Hammer, Cpu, Wheat, Truck, ClipboardList, DollarSign,
-  LayoutDashboard, Bell, Smartphone, Shield, Globe, Bot,
-  FileBarChart, Palette, Leaf, Users, Code2,
-  MapPin, Calculator, RefreshCw
+  FlaskConical, Handshake, Briefcase, TrendingUp, Zap, Building2,
+  Search, FileSpreadsheet, CheckCircle2, Rocket,
+  X,
+  Hammer, Cpu, Wheat, ClipboardList, DollarSign,
+  LayoutDashboard, Shield, Globe, Users,
+  Eye, Star, Target,
+  Factory,
 } from "lucide-react";
 
 // ─── Data ───────────────────────────────────────────────────────────────────
 
 const projects = [
-  { name: "Nimba Iron Mine", sector: "Mining", budget: 50, cost: 38, revenue: 89.5, roi: 79, status: "Active", country: "Guinée", countryFlag: "GN" },
-  { name: "Solar Plant Dakar", sector: "Energy", budget: 20, cost: 16, revenue: 29.1, roi: 44, status: "Active", country: "Sénégal", countryFlag: "SN" },
-  { name: "Lagos Real Estate", sector: "Real Estate", budget: 35, cost: 30, revenue: 52.5, roi: 50, status: "Active", country: "Nigeria", countryFlag: "NG" },
-  { name: "Abidjan Tech Hub", sector: "Technology", budget: 15, cost: 12, revenue: 22.5, roi: 50, status: "Completed", country: "Côte d'Ivoire", countryFlag: "CI" },
-  { name: "Kinshasa Agri-Business", sector: "Agriculture", budget: 25, cost: 20, revenue: 32.5, roi: 30, status: "Active", country: "RDC", countryFlag: "CD" },
-  { name: "Accra Fintech", sector: "Technology", budget: 10, cost: 8, revenue: 16.0, roi: 60, status: "Active", country: "Ghana", countryFlag: "GH" },
-  { name: "Nairobi Logistics", sector: "Logistics", budget: 30, cost: 24, revenue: 39.0, roi: 30, status: "Pending", country: "Kenya", countryFlag: "KE" },
-  { name: "Douala Port Extension", sector: "Logistics", budget: 45, cost: 36, revenue: 63.0, roi: 40, status: "Active", country: "Cameroun", countryFlag: "CM" },
+  { name: "Projet Minier Nimba", sector: "Mines", budget: 50, cost: 38, revenue: 89.5, roi: 79, status: "Active", country: "Guinée", countryFlag: "GN" },
+  { name: "Centrale Solaire Kindia", sector: "Énergie", budget: 20, cost: 16, revenue: 29.1, roi: 44, status: "Active", country: "Guinée", countryFlag: "GN" },
+  { name: "Zone Industrielle Dubréka", sector: "Industrie", budget: 35, cost: 30, revenue: 52.5, roi: 50, status: "Active", country: "Guinée", countryFlag: "GN" },
+  { name: "Agropole de Boké", sector: "Agro-industrie", budget: 25, cost: 20, revenue: 32.5, roi: 30, status: "Active", country: "Guinée", countryFlag: "GN" },
+  { name: "Hub Tech Conakry", sector: "Technologie", budget: 15, cost: 12, revenue: 22.5, roi: 50, status: "Completed", country: "Guinée", countryFlag: "GN" },
+  { name: "Port Maritime Kamsar", sector: "Énergie", budget: 45, cost: 36, revenue: 63.0, roi: 40, status: "Active", country: "Guinée", countryFlag: "GN" },
+  { name: "Transformation Bauxite", sector: "Industrie", budget: 30, cost: 24, revenue: 39.0, roi: 30, status: "Pending", country: "Guinée", countryFlag: "GN" },
+  { name: "Réseau Électrique Nzérékoré", sector: "Énergie", budget: 18, cost: 14, revenue: 27.0, roi: 50, status: "Active", country: "Guinée", countryFlag: "GN" },
 ];
 
 const projectImages: Record<string, string> = {
-  "Nimba Iron Mine": "/images/projects/mining.png",
-  "Solar Plant Dakar": "/images/projects/energy.png",
-  "Lagos Real Estate": "/images/projects/realestate.png",
-  "Abidjan Tech Hub": "/images/projects/technology.png",
-  "Kinshasa Agri-Business": "/images/projects/agriculture.png",
-  "Accra Fintech": "/images/projects/technology.png",
-  "Nairobi Logistics": "/images/projects/logistics.png",
-  "Douala Port Extension": "/images/projects/logistics.png",
+  "Projet Minier Nimba": "/nimba/gold-nuggets.png",
+  "Centrale Solaire Kindia": "/nimba/solar-panels.jpg",
+  "Zone Industrielle Dubréka": "/nimba/metal-bars.jpg",
+  "Agropole de Boké": "/nimba/gold-nuggets.png",
+  "Hub Tech Conakry": "/nimba/office-scene.jpg",
+  "Port Maritime Kamsar": "/nimba/cityscape.jpg",
+  "Transformation Bauxite": "/nimba/metal-bars.jpg",
+  "Réseau Électrique Nzérékoré": "/nimba/solar-panels.jpg",
 };
 
-const sectors = ["Mining", "Energy", "Real Estate", "Technology", "Agriculture", "Logistics"];
+const sectors = ["Mines", "Énergie", "Industrie", "Agro-industrie", "Technologie"];
 const statuses = ["Active", "Completed", "Pending"];
 
 const navItems = [
+  { label: "Accueil", href: "#accueil" },
+  { label: "À Propos", href: "#apropos" },
+  { label: "Services", href: "#services" },
   { label: "Dashboard", href: "#dashboard" },
-  { label: "Simulateur ROI", href: "#simulateur" },
+  { label: "Simulateur", href: "#simulateur" },
   { label: "Projets", href: "#projets" },
-  { label: "Pipeline", href: "#pipeline" },
   { label: "Analytics", href: "#analytics" },
-  { label: "Témoignages", href: "#temoignages" },
-  { label: "Tarifs", href: "#tarifs" },
   { label: "Contact", href: "#contact" },
+];
+
+// ─── NRC Content ────────────────────────────────────────────────────────────
+
+const nrcServices = [
+  {
+    icon: <Briefcase className="w-6 h-6" />,
+    title: "Développement & Gestion de projets",
+    desc: "Accompagnement complet : étude, montage, financement, exécution et pilotage de vos projets stratégiques.",
+  },
+  {
+    icon: <DollarSign className="w-6 h-6" />,
+    title: "Financement structuré & mobilisation de capitaux",
+    desc: "Création de modèles financiers adaptés aux besoins nationaux et à la réalité économique guinéenne.",
+  },
+  {
+    icon: <FlaskConical className="w-6 h-6" />,
+    title: "Ingénierie financière moderne",
+    desc: "Solutions innovantes : PPP, SPV, bail, titres, sûretés et fonds d'investissement sur mesure.",
+  },
+  {
+    icon: <TrendingUp className="w-6 h-6" />,
+    title: "Fonds d'investissement & soutien institutionnel",
+    desc: "Création, gestion, structuration et accompagnement des institutions publiques et privées.",
+  },
+  {
+    icon: <Shield className="w-6 h-6" />,
+    title: "Gestion d'actifs & opérations connexes",
+    desc: "Sécurisation, valorisation et optimisation des actifs stratégiques pour une rentabilité durable.",
+  },
+];
+
+const nrcAxes = [
+  { icon: <LayoutDashboard className="w-7 h-7" />, title: "Développement & gestion de projets", desc: "Conception, structuration et pilotage de projets d'envergure nationale et régionale." },
+  { icon: <DollarSign className="w-7 h-7" />, title: "Mobilisation de capitaux", desc: "Identification et mobilisation des ressources financières auprès d'investisseurs stratégiques." },
+  { icon: <FlaskConical className="w-7 h-7" />, title: "Ingénierie financière souveraine", desc: "Mécanismes financiers innovants adaptés au contexte guinéen et africain." },
+  { icon: <Handshake className="w-7 h-7" />, title: "Opérations stratégiques connexes", desc: "Conseil, audit et accompagnement dans les opérations financières complexes." },
+];
+
+const nrcSectors = [
+  { icon: <Factory className="w-7 h-7" />, title: "Industrie & transformation", desc: "Zones industrielles, unités de production et valorisation locale des ressources.", image: "/nimba/metal-bars.jpg" },
+  { icon: <Hammer className="w-7 h-7" />, title: "Mines & Ressources naturelles", desc: "Structuration de projets miniers, chaînes de valeur et logistique minière.", image: "/nimba/gold-nuggets.png" },
+  { icon: <Zap className="w-7 h-7" />, title: "Énergie & Infrastructures", desc: "Énergie, routes, ports, eau et télécommunications pour le développement.", image: "/nimba/solar-panels.jpg" },
+  { icon: <Wheat className="w-7 h-7" />, title: "Agro-industrie", desc: "Agropoles, transformation agroalimentaire et systèmes de production durables.", image: "/nimba/gold-nuggets.png" },
+  { icon: <Cpu className="w-7 h-7" />, title: "Technologie & Innovation", desc: "Digitalisation, plateformes et infrastructures technologiques souveraines.", image: "/nimba/office-scene.jpg" },
+];
+
+const nrcValues = [
+  { icon: <Shield className="w-6 h-6" />, title: "Souveraineté", desc: "Priorité à l'indépendance décisionnelle et financière de la Guinée." },
+  { icon: <Eye className="w-6 h-6" />, title: "Transparence", desc: "Gestion ouverte et traçabilité dans toutes nos opérations." },
+  { icon: <Star className="w-6 h-6" />, title: "Excellence", desc: "Recherche constante de la qualité et des standards internationaux." },
+  { icon: <Target className="w-6 h-6" />, title: "Impact durable", desc: "Engagement envers un développement responsable et pérenne." },
+  { icon: <Users className="w-6 h-6" />, title: "Gouvernance responsable", desc: "Pratiques de gestion rigoureuses et conformes aux normes." },
+];
+
+const nrcTeam = [
+  { name: "Mr Ousmane SAVANE", role: "Président du Conseil d'Administration", photo: "/nimba/pca-savane.jpg" },
+  { name: "Sanassy Muhammad SAVANE", role: "Directeur Général", photo: "/nimba/dg-savane.jpg" },
+  { name: "Sidiki SUMAORO", role: "Directeur Général Adjoint", photo: "/nimba/dga-sumaoro.jpg" },
+];
+
+const nrcTestimonials = [
+  {
+    name: "Aboubacar Diallo",
+    title: "Directeur Général, Société Minière de Kindia",
+    quote: "NRC SA-CV a su structurer notre projet minier avec une rigueur exemplaire. Leur connaissance du terrain guinéen et leur expertise en financement ont été déterminantes.",
+    gradient: "from-[#2B6CB0] to-[#13612e]",
+  },
+  {
+    name: "Mariam Touré",
+    title: "Responsable Partenariats, Chambre de Commerce de Conakry",
+    quote: "L'accompagnement de NRC SA-CV dans la mobilisation de capitaux pour nos projets agro-industriels a dépassé nos attentes. Un partenaire de confiance.",
+    gradient: "from-[#f5a524] to-[#f7630c]",
+  },
+  {
+    name: "Ibrahima Condé",
+    title: "PDG, Guinée Énergie Solutions",
+    quote: "L'ingénierie financière proposée par NRC SA-CV pour notre projet de centrale solaire a été innovante et parfaitement adaptée au contexte guinéen.",
+    gradient: "from-[#13612e] to-[#2B6CB0]",
+  },
 ];
 
 // ─── Chart Colors ──────────────────────────────────────────────────────────
@@ -110,23 +190,14 @@ const budgetAllocationData = (() => {
   return Object.entries(map).map(([name, value]) => ({ name, value }));
 })();
 
-// Pipeline funnel data
-const pipelineData = [
-  { stage: "Identification", value: 120, fill: "#2B6CB0" },
-  { stage: "Due Diligence", value: 85, fill: "#2B9EB3" },
-  { stage: "Négociation", value: 52, fill: "#f5a524" },
-  { stage: "Approbation", value: 30, fill: "#f7630c" },
-  { stage: "Signature", value: 18, fill: "#13612e" },
-];
-
 // Radar data for top 4 projects
 const radarData = [
-  { metric: "ROI", "Nimba Iron": 79, "Lagos Real Estate": 50, "Accra Fintech": 60, "Solar Plant Dakar": 44 },
-  { metric: "Budget", "Nimba Iron": 80, "Lagos Real Estate": 56, "Accra Fintech": 16, "Solar Plant Dakar": 32 },
-  { metric: "Rentabilité", "Nimba Iron": 85, "Lagos Real Estate": 55, "Accra Fintech": 70, "Solar Plant Dakar": 50 },
-  { metric: "Risque", "Nimba Iron": 60, "Lagos Real Estate": 45, "Accra Fintech": 35, "Solar Plant Dakar": 25 },
-  { metric: "Durée", "Nimba Iron": 70, "Lagos Real Estate": 60, "Accra Fintech": 50, "Solar Plant Dakar": 65 },
-  { metric: "Impact", "Nimba Iron": 90, "Lagos Real Estate": 65, "Accra Fintech": 55, "Solar Plant Dakar": 45 },
+  { metric: "ROI", "Mine Nimba": 79, "Zone Dubréka": 50, "Hub Conakry": 50, "Solaire Kindia": 44 },
+  { metric: "Budget", "Mine Nimba": 80, "Zone Dubréka": 56, "Hub Conakry": 24, "Solaire Kindia": 32 },
+  { metric: "Rentabilité", "Mine Nimba": 85, "Zone Dubréka": 55, "Hub Conakry": 70, "Solaire Kindia": 50 },
+  { metric: "Risque", "Mine Nimba": 60, "Zone Dubréka": 45, "Hub Conakry": 35, "Solaire Kindia": 25 },
+  { metric: "Durée", "Mine Nimba": 70, "Zone Dubréka": 60, "Hub Conakry": 50, "Solaire Kindia": 65 },
+  { metric: "Impact", "Mine Nimba": 90, "Zone Dubréka": 65, "Hub Conakry": 55, "Solaire Kindia": 45 },
 ];
 
 // Cost structure data
@@ -139,26 +210,26 @@ const costStructureData = projects.map((p) => ({
 
 // Cumulative ROI by sector
 const cumulativeROIData = [
-  { month: "Jan", Mining: 5, Technology: 3, Energy: 2, Logistics: 1 },
-  { month: "Fév", Mining: 12, Technology: 7, Energy: 5, Logistics: 3 },
-  { month: "Mar", Mining: 20, Technology: 12, Energy: 9, Logistics: 6 },
-  { month: "Avr", Mining: 30, Technology: 18, Energy: 14, Logistics: 10 },
-  { month: "Mai", Mining: 42, Technology: 25, Energy: 20, Logistics: 15 },
-  { month: "Jun", Mining: 55, Technology: 34, Energy: 27, Logistics: 21 },
-  { month: "Jul", Mining: 65, Technology: 42, Energy: 35, Logistics: 28 },
-  { month: "Aoû", Mining: 72, Technology: 50, Energy: 42, Logistics: 33 },
-  { month: "Sep", Mining: 80, Technology: 58, Energy: 50, Logistics: 39 },
-  { month: "Oct", Mining: 88, Technology: 67, Energy: 58, Logistics: 46 },
-  { month: "Nov", Mining: 95, Technology: 76, Energy: 67, Logistics: 52 },
-  { month: "Déc", Mining: 100, Technology: 85, Energy: 75, Logistics: 60 },
+  { month: "Jan", Mines: 5, Technologie: 3, Énergie: 2, Industrie: 1 },
+  { month: "Fév", Mines: 12, Technologie: 7, Énergie: 5, Industrie: 3 },
+  { month: "Mar", Mines: 20, Technologie: 12, Énergie: 9, Industrie: 6 },
+  { month: "Avr", Mines: 30, Technologie: 18, Énergie: 14, Industrie: 10 },
+  { month: "Mai", Mines: 42, Technologie: 25, Énergie: 20, Industrie: 15 },
+  { month: "Jun", Mines: 55, Technologie: 34, Énergie: 27, Industrie: 21 },
+  { month: "Jul", Mines: 65, Technologie: 42, Énergie: 35, Industrie: 28 },
+  { month: "Aoû", Mines: 72, Technologie: 50, Énergie: 42, Industrie: 33 },
+  { month: "Sep", Mines: 80, Technologie: 58, Énergie: 50, Industrie: 39 },
+  { month: "Oct", Mines: 88, Technologie: 67, Énergie: 58, Industrie: 46 },
+  { month: "Nov", Mines: 95, Technologie: 76, Énergie: 67, Industrie: 52 },
+  { month: "Déc", Mines: 100, Technologie: 85, Énergie: 75, Industrie: 60 },
 ];
 
 // Waterfall data
 const waterfallData = [
-  { name: "Budget Total", value: 0, budget: 230, adjustment: 0, revenue: 0 },
-  { name: "Coûts Opér.", value: 0, budget: 0, adjustment: -184, revenue: 0 },
+  { name: "Budget Total", value: 0, budget: 238, adjustment: 0, revenue: 0 },
+  { name: "Coûts Opér.", value: 0, budget: 0, adjustment: -190, revenue: 0 },
   { name: "Ajustements", value: 0, budget: 0, adjustment: 38, revenue: 0 },
-  { name: "Revenus", value: 0, budget: 0, adjustment: 0, revenue: 344.1 },
+  { name: "Revenus", value: 0, budget: 0, adjustment: 0, revenue: 355 },
 ];
 
 // ─── Types ──────────────────────────────────────────────────────────────────
@@ -245,12 +316,11 @@ function useSectionObserver(sectionIds: string[]) {
 // ─── ROI Simulator Logic ────────────────────────────────────────────────────
 
 const sectorROI: Record<string, [number, number]> = {
-  Mining: [60, 80],
-  Energy: [35, 55],
-  "Real Estate": [40, 60],
-  Technology: [45, 65],
-  Agriculture: [25, 40],
-  Logistics: [25, 45],
+  Mines: [50, 80],
+  Énergie: [35, 55],
+  Industrie: [30, 50],
+  "Agro-industrie": [25, 40],
+  Technologie: [40, 65],
 };
 
 const riskMultiplier: Record<string, number> = { Low: 0.85, Medium: 1.0, High: 1.2 };
@@ -281,7 +351,7 @@ function CustomTooltip({ active, payload, label }: { active?: boolean; payload?:
       {payload.map((p, i) => (
         <p key={i} style={{ color: p.color }} className="flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full inline-block" style={{ backgroundColor: p.color }} />
-          {p.name}: <span className="font-semibold">{p.value}M€</span>
+          {p.name}: <span className="font-semibold">{p.value}M$</span>
         </p>
       ))}
     </div>
@@ -291,23 +361,23 @@ function CustomTooltip({ active, payload, label }: { active?: boolean; payload?:
 // ─── Main Component ─────────────────────────────────────────────────────────
 
 export default function Home() {
-  const sectionIds = ["dashboard", "simulateur", "projets", "pipeline", "analytics", "temoignages", "tarifs", "contact", "reporting", "demo"];
+  const sectionIds = ["accueil", "apropos", "services", "dashboard", "simulateur", "projets", "analytics", "contact"];
   const activeSection = useSectionObserver(sectionIds);
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => { setMounted(true); }, []); // mount detection for Recharts SSR safety
+  useEffect(() => { setMounted(true); }, []);
 
   // Dashboard counters
-  const budgetCount = useAnimatedCounter(230, 2000);
-  const revenueCount = useAnimatedCounter(344.1, 2500, 1);
-  const roiCount = useAnimatedCounter(47.9, 2200, 1);
+  const budgetCount = useAnimatedCounter(238, 2000);
+  const revenueCount = useAnimatedCounter(355, 2500, 1);
+  const roiCount = useAnimatedCounter(46.6, 2200, 1);
   const activeCount = useAnimatedCounter(6, 1500);
   const [dashVisible, setDashVisible] = useState(false);
   const dashRef = useRef<HTMLDivElement>(null);
 
   // Simulator state
   const [simName, setSimName] = useState("");
-  const [simSector, setSimSector] = useState("Technology");
+  const [simSector, setSimSector] = useState("Mines");
   const [simBudget, setSimBudget] = useState(20);
   const [simDuration, setSimDuration] = useState(3);
   const [simRisk, setSimRisk] = useState("Medium");
@@ -372,7 +442,7 @@ export default function Home() {
     return calculateROI(simSector, simBudget, simDuration, simRisk);
   }, [showResults, simSector, simBudget, simDuration, simRisk]);
 
-  // Filtered projects (merge original + imported)
+  // Filtered projects
   const filteredProjects = useMemo(() => {
     const all = [...projects, ...importedProjects];
     return all
@@ -502,11 +572,6 @@ export default function Home() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [demoName, demoEmail, demoCompany, demoPhone, demoProjects, demoMessage, addToast]);
 
-  // PDF report handler
-  const handleDownloadReport = useCallback(() => {
-    addToast("Rapport généré avec succès ! Téléchargement en cours...", "success");
-  }, [addToast]);
-
   // Helpers
   const statusStyle = (status: string) => {
     switch (status) {
@@ -519,22 +584,14 @@ export default function Home() {
 
   const sectorIcon = (sector: string) => {
     switch (sector) {
-      case "Mining": return <Hammer className="w-4 h-4" />;
-      case "Energy": return <Zap className="w-4 h-4" />;
-      case "Real Estate": return <Building2 className="w-4 h-4" />;
-      case "Technology": return <Cpu className="w-4 h-4" />;
-      case "Agriculture": return <Wheat className="w-4 h-4" />;
-      case "Logistics": return <Truck className="w-4 h-4" />;
+      case "Mines": return <Hammer className="w-4 h-4" />;
+      case "Énergie": return <Zap className="w-4 h-4" />;
+      case "Industrie": return <Factory className="w-4 h-4" />;
+      case "Agro-industrie": return <Wheat className="w-4 h-4" />;
+      case "Technologie": return <Cpu className="w-4 h-4" />;
       default: return <ClipboardList className="w-4 h-4" />;
     }
   };
-
-  const demoTimelineSteps: Array<{ step: string; title: string; desc: string; icon: React.ReactNode; color: string }> = [
-    { step: "01", title: "Dashboard en Temps Réel", desc: "Vision globale des performances de vos projets avec KPIs dynamiques et graphiques interactifs", icon: <LayoutDashboard className="w-5 h-5" />, color: "bg-[#2B6CB0] text-white" },
-    { step: "02", title: "Simulation Rapide", desc: "Simulez des investissements en quelques clics avec des projections basées sur les données sectorielles africaines", icon: <FlaskConical className="w-5 h-5" />, color: "bg-[#f5a524] text-white" },
-    { step: "03", title: "Structure Investisseurs", desc: "Présentez vos projets avec des rapports professionnels générés automatiquement", icon: <Handshake className="w-5 h-5" />, color: "bg-[#2B6CB0] text-white" },
-    { step: "04", title: "Connectable à Vos Données", desc: "Intégrez vos systèmes existants et connectez vos sources de données en temps réel", icon: <Link2 className="w-5 h-5" />, color: "bg-[#2B6CB0] text-white" },
-  ];
 
   return (
     <main className="min-h-screen bg-[#F7FAFC] text-[#1A202C]">
@@ -545,7 +602,7 @@ export default function Home() {
         {toasts.map((toast) => (
           <div
             key={toast.id}
-            className={`px-5 py-3 rounded-xl shadow-lg text-white text-sm font-medium max-w-sm animate-[slideIn_0.3s_ease-out] ${
+            className={`px-5 py-3 rounded-xl shadow-lg text-white text-sm font-medium max-w-sm animate-slide-in ${
               toast.type === "success" ? "bg-gradient-to-r from-[#13612e] to-[#1a7a3a]" : "bg-gradient-to-r from-[#b82105] to-[#d42a0a]"
             }`}
           >
@@ -586,7 +643,7 @@ export default function Home() {
                 </div>
                 <div>
                   <label className="block text-sm text-[#718096] mb-1.5">Téléphone</label>
-                  <input value={demoPhone} onChange={(e) => setDemoPhone(e.target.value)} className="w-full px-4 py-2.5 bg-[#F7FAFC] border border-gray-300 rounded-xl text-sm focus:outline-none focus:border-[#2B6CB0]" placeholder="+225 XX XX XX XX" />
+                  <input value={demoPhone} onChange={(e) => setDemoPhone(e.target.value)} className="w-full px-4 py-2.5 bg-[#F7FAFC] border border-gray-300 rounded-xl text-sm focus:outline-none focus:border-[#2B6CB0]" placeholder="+224 XXX XX XX XX" />
                 </div>
                 <div>
                   <label className="block text-sm text-[#718096] mb-1.5">Nombre de projets</label>
@@ -618,12 +675,12 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-3">
-              <Image src="/logo.png" alt="InvestFlow Africa" width={36} height={36} className="rounded-lg" />
-              <span className="text-lg font-bold tracking-tight">InvestFlow <span className="text-[#2B6CB0]">Africa</span></span>
+              <Image src="/nimba/NRC-noir.png" alt="NRC SA-CV" width={36} height={36} className="rounded-lg" />
+              <span className="text-lg font-bold tracking-tight" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Nimba Ressources <span className="text-[#2B6CB0]">Company</span></span>
             </div>
-            <div className="hidden md:flex items-center gap-1">
+            <div className="hidden lg:flex items-center gap-1">
               {navItems.map((item) => (
-                <button key={item.href} onClick={() => scrollToSection(item.href)} className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer ${activeSection === item.href.slice(1) ? "bg-[#2B6CB0]/10 text-[#2B6CB0]" : "text-[#4A5568] hover:text-[#1A202C] hover:bg-[#2B6CB0]/5"}`}>
+                <button key={item.href} onClick={() => scrollToSection(item.href)} className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer ${activeSection === item.href.slice(1) ? "bg-[#2B6CB0]/10 text-[#2B6CB0]" : "text-[#4A5568] hover:text-[#1A202C] hover:bg-[#2B6CB0]/5"}`}>
                   {item.label}
                 </button>
               ))}
@@ -631,7 +688,7 @@ export default function Home() {
                 Demander une Démo
               </button>
             </div>
-            <button className="md:hidden p-2 text-[#4A5568] hover:text-[#1A202C] cursor-pointer" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+            <button className="lg:hidden p-2 text-[#4A5568] hover:text-[#1A202C] cursor-pointer" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {mobileMenuOpen ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /> : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />}
               </svg>
@@ -639,7 +696,7 @@ export default function Home() {
           </div>
         </div>
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-200 bg-white/95 backdrop-blur-lg">
+          <div className="lg:hidden border-t border-gray-200 bg-white/95 backdrop-blur-lg">
             <div className="px-4 py-3 space-y-1">
               {navItems.map((item) => (
                 <button key={item.href} onClick={() => scrollToSection(item.href)} className={`block w-full text-left px-4 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer ${activeSection === item.href.slice(1) ? "bg-[#2B6CB0]/10 text-[#2B6CB0]" : "text-[#4A5568] hover:text-[#1A202C] hover:bg-[#2B6CB0]/5"}`}>
@@ -657,42 +714,38 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════════════════
           2. HERO SECTION
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex items-center pt-16 overflow-hidden">
-        <div className="absolute inset-0"><Image src="/images/hero-bg.png" alt="" fill className="object-cover" priority /></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1A202C]/85 via-[#1A202C]/60 to-transparent" />
-        <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-[#2B6CB0] via-[#13612e] to-[#2B6CB0] opacity-60" />
+      <section id="accueil" className="relative min-h-screen flex items-center pt-16 overflow-hidden">
+        <div className="absolute inset-0"><Image src="/nimba/hero-construction.jpg" alt="" fill className="object-cover" priority /></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1A202C]/90 via-[#1A202C]/70 to-[#1A202C]/40" />
+        <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-[#2B6CB0] via-[#988037] to-[#2B6CB0] opacity-60" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <div className="gradient-border inline-flex">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#1A202C]/40 border border-white/20 rounded-full text-white text-sm font-medium mb-8 backdrop-blur-sm">
-              <span className="w-2 h-2 bg-[#48BB78] rounded-full animate-pulse" />
-                Plateforme de Gestion d&apos;Investissements
+                <span className="w-2 h-2 bg-[#988037] rounded-full animate-pulse" />
+                Architecte d&apos;Investissements Souverains
               </div>
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 tracking-tight text-white">
-              Pilotage Intelligent de{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#63B3ED] to-[#68D391]">
-                Vos Projets &amp; Investissements
-              </span>{" "}
-              en Afrique
+              <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Structurer, Financer, Développer.</span>
             </h1>
-            <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto mb-12 leading-relaxed">
-              Centralisez vos données, analysez la rentabilité et présentez vos projets aux investisseurs avec une plateforme professionnelle.
+            <p className="text-xl sm:text-2xl max-w-2xl mx-auto mb-12 leading-relaxed" style={{ color: "#988037" }}>
+              Pour une Guinée souveraine et productive.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
               <button onClick={() => scrollToSection("#dashboard")} className="w-full sm:w-auto px-8 py-3.5 bg-[#2B6CB0] hover:bg-[#215387] text-white font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-[#2B6CB0]/25 cursor-pointer">
-                Accéder au Dashboard
+                Explorez maintenant
               </button>
-              <button onClick={() => setDemoModalOpen(true)} className="w-full sm:w-auto px-8 py-3.5 bg-white/15 hover:bg-white/25 text-white font-semibold rounded-xl border border-white/30 hover:border-white/50 backdrop-blur-sm transition-all duration-200 cursor-pointer">
-                Voir la Démo
+              <button onClick={() => scrollToSection("#services")} className="w-full sm:w-auto px-8 py-3.5 bg-white/15 hover:bg-white/25 text-white font-semibold rounded-xl border border-white/30 hover:border-white/50 backdrop-blur-sm transition-all duration-200 cursor-pointer">
+                Nos Services
               </button>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
               {([
-                { icon: <BarChart3 className="w-7 h-7 text-[#63B3ED]" />, title: "Suivre la performance", desc: "des projets en temps réel" },
-                { icon: <DollarSign className="w-7 h-7 text-[#68D391]" />, title: "Analyser la rentabilité", desc: "calculs ROI automatisés" },
-                { icon: <FlaskConical className="w-7 h-7 text-[#F6AD55]" />, title: "Simuler des investissements", desc: "projets financiers scénarios" },
-                { icon: <Handshake className="w-7 h-7 text-[#B794F4]" />, title: "Présenter vos projets", desc: "aux investisseurs clés" },
+                { icon: <Briefcase className="w-7 h-7" style={{ color: "#63B3ED" }} />, title: "Structurer", desc: "des projets stratégiques" },
+                { icon: <DollarSign className="w-7 h-7" style={{ color: "#68D391" }} />, title: "Financer", desc: "avec ingénierie moderne" },
+                { icon: <FlaskConical className="w-7 h-7" style={{ color: "#F6AD55" }} />, title: "Développer", desc: "pour la Guinée" },
+                { icon: <Handshake className="w-7 h-7" style={{ color: "#B794F4" }} />, title: "Accompagner", desc: "vers la souveraineté" },
               ] as { icon: React.ReactNode; title: string; desc: string }[]).map((f, i) => (
                 <div key={i} className="p-5 bg-white/8 backdrop-blur-md border border-white/15 rounded-2xl hover:border-white/40 shadow-sm transition-all duration-300 card-hover">
                   <div className="mb-3">{f.icon}</div>
@@ -705,10 +758,10 @@ export default function Home() {
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { value: "230M€", label: "Budget Total" },
-                { value: "8", label: "Projets" },
-                { value: "6", label: "Pays Africains" },
-                { value: "47.9%", label: "ROI Moyen" },
+                { value: "50+", label: "Projets structurés" },
+                { value: "25+", label: "Partenariats actifs" },
+                { value: "5", label: "Secteurs stratégiques" },
+                { value: "100%", label: "Souveraineté" },
               ].map((s, i) => (
                 <div key={i} className="text-center p-4 bg-white/8 backdrop-blur-md border border-white/15 rounded-xl shadow-sm animate-float">
                   <div className="text-2xl sm:text-3xl font-bold text-white">{s.value}</div>
@@ -720,20 +773,213 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TRUST BAND */}
-      <div className="relative py-8 bg-white border-b border-gray-100">
+      {/* ═══════════════════════════════════════════════════════════════════════
+          3. ABOUT SECTION
+          ═══════════════════════════════════════════════════════════════════════ */}
+      <section id="apropos" className="py-24 relative bg-white">
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-[#F7FAFC] to-white opacity-60" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Qui sommes-<span className="text-gradient-blue">nous</span> ?</h2>
+            <p className="text-[#718096] max-w-2xl mx-auto text-lg">NRC SA-CV est une société guinéenne spécialisée dans la structuration, la mobilisation de capitaux et la gestion de projets stratégiques.</p>
+          </div>
+
+          {/* Mission & Vision */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            <div className="p-8 card-modern card-hover">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 rounded-xl bg-[#2B6CB0]/10 flex items-center justify-center"><Target className="w-6 h-6 text-[#2B6CB0]" /></div>
+                <h3 className="text-xl font-bold">Notre Mission</h3>
+              </div>
+              <p className="text-[#4A5568] leading-relaxed">Bâtir un modèle d&apos;investissement capable de financer et concrétiser les projets essentiels au développement durable de la Guinée.</p>
+            </div>
+            <div className="p-8 card-modern card-hover">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 rounded-xl bg-[#13612e]/10 flex items-center justify-center"><Globe className="w-6 h-6 text-[#13612e]" /></div>
+                <h3 className="text-xl font-bold">Notre Vision</h3>
+              </div>
+              <p className="text-[#4A5568] leading-relaxed">Faire de la Guinée un pôle d&apos;investissement structuré, souverain et attractif, reconnu à l&apos;échelle africaine et internationale.</p>
+            </div>
+          </div>
+
+          {/* PCA Quote */}
+          <div className="p-8 md:p-12 rounded-2xl bg-gradient-to-br from-[#215387] to-[#1A202C] text-white mb-16 relative overflow-hidden">
+            <div className="absolute top-4 right-4 w-32 h-32 rounded-full bg-[#988037]/10" />
+            <div className="absolute bottom-4 left-4 w-24 h-24 rounded-full bg-[#2B6CB0]/10" />
+            <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 items-center relative z-10">
+              <div className="hidden md:block">
+                <div className="w-40 h-40 rounded-2xl overflow-hidden shadow-lg border-2 border-[#988037]/30">
+                  <Image src="/nimba/pca-savane.jpg" alt="Mr Ousmane SAVANE" width={160} height={160} className="object-cover w-full h-full" />
+                </div>
+              </div>
+              <div>
+                <span className="quote-mark block mb-2 select-none">&ldquo;</span>
+                <p className="text-lg md:text-xl leading-relaxed mb-6 italic" style={{ color: "#E2E8F0" }}>
+                  Nimba Ressources Company SA-CV est née d&apos;une conviction simple : la Guinée doit être actrice de son propre développement.
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="md:hidden w-12 h-12 rounded-full overflow-hidden shadow-md">
+                    <Image src="/nimba/pca-savane.jpg" alt="PCA" width={48} height={48} className="object-cover" />
+                  </div>
+                  <div>
+                    <p className="font-bold text-[#988037]">Mr Ousmane SAVANE</p>
+                    <p className="text-sm text-gray-300">Président du Conseil d&apos;Administration</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Values */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-center mb-8">Nos <span style={{ color: "#988037" }}>Valeurs</span> Fondamentales</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+              {nrcValues.map((v, i) => (
+                <div key={i} className="p-6 card-modern card-hover text-center group">
+                  <div className="w-14 h-14 rounded-2xl bg-[#2B6CB0]/10 flex items-center justify-center mx-auto mb-4 text-[#2B6CB0] group-hover:bg-[#2B6CB0] group-hover:text-white transition-all duration-300">
+                    {v.icon}
+                  </div>
+                  <h4 className="font-bold text-sm mb-2">{v.title}</h4>
+                  <p className="text-xs text-[#718096] leading-relaxed">{v.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Team */}
+          <div>
+            <h3 className="text-2xl font-bold text-center mb-8">Notre <span style={{ color: "#988037" }}>Équipe</span> de Direction</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {nrcTeam.map((member, i) => (
+                <div key={i} className="p-6 card-modern card-hover text-center group">
+                  <div className="w-28 h-28 rounded-2xl overflow-hidden mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-shadow">
+                    <Image src={member.photo} alt={member.name} width={112} height={112} className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" />
+                  </div>
+                  <h4 className="font-bold text-base mb-1">{member.name}</h4>
+                  <p className="text-sm text-[#988037] font-medium">{member.role}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════════
+          4. SERVICES SECTION
+          ═══════════════════════════════════════════════════════════════════════ */}
+      <section id="services" className="py-24 relative bg-[#F7FAFC]">
+        <div className="absolute inset-0 grid-pattern" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Nos <span className="text-gradient-blue">Services</span></h2>
+            <p className="text-[#718096] max-w-2xl mx-auto">Des solutions complètes pour structurer, financer et développer vos projets en Guinée.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {nrcServices.slice(0, 3).map((service, i) => (
+              <div key={i} className="p-8 card-modern card-hover group">
+                <div className="w-14 h-14 rounded-2xl bg-[#2B6CB0]/10 flex items-center justify-center text-[#2B6CB0] mb-5 group-hover:bg-[#2B6CB0] group-hover:text-white transition-all duration-300">
+                  {service.icon}
+                </div>
+                <h3 className="text-lg font-bold mb-3">{service.title}</h3>
+                <p className="text-sm text-[#718096] leading-relaxed mb-4">{service.desc}</p>
+                <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full rounded-full bg-gradient-to-r from-[#2B6CB0] to-[#13612e] animate-progress" style={{ width: "100%" }} />
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {nrcServices.slice(3).map((service, i) => (
+              <div key={i} className="p-8 card-modern card-hover group">
+                <div className="w-14 h-14 rounded-2xl bg-[#988037]/10 flex items-center justify-center text-[#988037] mb-5 group-hover:bg-[#988037] group-hover:text-white transition-all duration-300">
+                  {service.icon}
+                </div>
+                <h3 className="text-lg font-bold mb-3">{service.title}</h3>
+                <p className="text-sm text-[#718096] leading-relaxed mb-4">{service.desc}</p>
+                <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full rounded-full bg-gradient-to-r from-[#988037] to-[#7a6628] animate-progress" style={{ width: "100%" }} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════════
+          5. STRATEGIC AXES
+          ═══════════════════════════════════════════════════════════════════════ */}
+      <section className="py-24 relative bg-white">
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-[#F7FAFC] to-white opacity-60" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Nos <span style={{ color: "#988037" }}>04</span> Axes <span className="text-gradient-blue">Stratégiques</span></h2>
+            <p className="text-[#718096] max-w-2xl mx-auto">Quatre piliers opérationnels pour structurer l&apos;action de NRC SA-CV.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {nrcAxes.map((axe, i) => (
+              <div key={i} className="p-6 card-modern card-hover text-center group">
+                <div className="w-14 h-14 rounded-2xl bg-[#2B6CB0]/10 flex items-center justify-center mx-auto mb-4 text-[#2B6CB0] group-hover:bg-[#2B6CB0] group-hover:text-white transition-all duration-300">
+                  {axe.icon}
+                </div>
+                <div className="text-sm font-bold text-[#988037] mb-2">Axe {String(i + 1).padStart(2, "0")}</div>
+                <h3 className="font-bold mb-2">{axe.title}</h3>
+                <p className="text-sm text-[#718096] leading-relaxed">{axe.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════════
+          6. SECTORS
+          ═══════════════════════════════════════════════════════════════════════ */}
+      <section className="py-24 relative bg-[#F7FAFC]">
+        <div className="absolute inset-0 dot-pattern" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Les Piliers <span className="text-gradient-blue">Sectoriels</span></h2>
+            <p className="text-[#718096] max-w-2xl mx-auto">Les 5 secteurs d&apos;intervention stratégiques de NRC SA-CV.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {nrcSectors.map((sector, i) => (
+              <div key={i} className="card-modern card-hover group overflow-hidden">
+                <div className="relative h-40 overflow-hidden">
+                  <Image src={sector.image} alt={sector.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                  <div className="absolute bottom-3 left-4 text-white">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="[&>svg]:w-5 [&>svg]:h-5">{sector.icon}</span>
+                      <h3 className="font-bold text-base">{sector.title}</h3>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <p className="text-sm text-[#4A5568] leading-relaxed">{sector.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════════
+          PARTNERS TRUST BAND
+          ═══════════════════════════════════════════════════════════════════════ */}
+      <div className="relative py-12 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-xs text-[#A0AEC0] uppercase tracking-widest mb-4 font-medium">Ils nous font confiance en Afrique</p>
-          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 opacity-40">
-            {["Nimba Ressources", "SIFCA Group", "Afrika Capital", "Sahel Ventures", "Ecobank", "Afreximbank"].map((name) => (
-              <span key={name} className="text-lg sm:text-xl font-bold text-[#4A5568] tracking-tight">{name}</span>
+          <p className="text-center text-xs text-[#718096] uppercase tracking-widest mb-6 font-medium">Ils nous font confiance ! Partenaires Techniques &amp; Financiers</p>
+          <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-4 items-center justify-items-center opacity-50 hover:opacity-80 transition-opacity">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
+              <div key={n} className="w-20 h-20 relative rounded-lg overflow-hidden">
+                <Image src={`/nimba/partner-${n}.jpg`} alt={`Partenaire ${n}`} fill className="object-cover" />
+              </div>
             ))}
           </div>
         </div>
       </div>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          3. DASHBOARD SECTION
+          7. DASHBOARD SECTION
           ═══════════════════════════════════════════════════════════════════════ */}
       <section id="dashboard" className="py-24 relative bg-white">
         <div className="absolute inset-0 bg-gradient-to-b from-white via-[#F7FAFC] to-white opacity-60" />
@@ -748,13 +994,13 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
               <div className="p-6 card-modern stat-card card-hover relative before:bg-[#2B6CB0]">
                 <div className="relative z-10"><div className="flex items-center gap-3 mb-4"><div className="w-10 h-10 rounded-xl bg-[#2B6CB0]/10 flex items-center justify-center"><Briefcase className="w-5 h-5 text-[#2B6CB0]" /></div><span className="text-sm text-[#718096]">Budget Total</span></div>
-                <div className="text-3xl font-bold animate-count">{budgetCount}M€</div>
+                <div className="text-3xl font-bold animate-count">{budgetCount}M$</div>
                 <p className="text-xs text-[#718096] mt-2">Enveloppe globale</p></div>
               </div>
               <div className="p-6 card-modern stat-card card-hover glow-green relative before:bg-[#13612e]">
                 <div className="relative z-10"><div className="flex items-center gap-3 mb-4"><div className="w-10 h-10 rounded-xl bg-[#13612e]/10 flex items-center justify-center"><TrendingUp className="w-5 h-5 text-[#13612e]" /></div><span className="text-sm text-[#718096]">Revenus Totaux</span></div>
-                <div className="text-3xl font-bold text-[#13612e] animate-count">{revenueCount}M€</div>
-                <p className="text-xs text-[#13612e]/70 mt-2">↑ 49.6% vs budget</p></div>
+                <div className="text-3xl font-bold text-[#13612e] animate-count">{revenueCount}M$</div>
+                <p className="text-xs text-[#13612e]/70 mt-2">↑ 49.2% vs budget</p></div>
               </div>
               <div className="p-6 card-modern stat-card card-hover shadow-gold relative before:bg-[#f5a524]">
                 <div className="relative z-10"><div className="flex items-center gap-3 mb-4"><div className="w-10 h-10 rounded-xl bg-[#f5a524]/10 flex items-center justify-center"><Zap className="w-5 h-5 text-[#f5a524]" /></div><span className="text-sm text-[#718096]">ROI Moyen</span></div>
@@ -769,11 +1015,11 @@ export default function Home() {
             </div>
           )}
 
-          {/* Charts Grid - Interactive Recharts */}
+          {/* Charts Grid */}
           {mounted && (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                {/* ROI par Projet - Horizontal Bar Chart */}
+                {/* ROI par Projet */}
                 <div className="p-6 card-modern glow-green">
                   <h3 className="text-lg font-semibold mb-4 flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-[#13612e]" />ROI par Projet</h3>
                   <ResponsiveContainer width="100%" height={280}>
@@ -791,14 +1037,14 @@ export default function Home() {
                   </ResponsiveContainer>
                 </div>
 
-                {/* Tendances Mensuelles - Line Chart */}
+                {/* Tendances Mensuelles */}
                 <div className="p-6 card-modern glow-blue">
                   <h3 className="text-lg font-semibold mb-4 flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-[#2B6CB0]" />Tendances Mensuelles</h3>
                   <ResponsiveContainer width="100%" height={280}>
                     <LineChart data={monthlyData} margin={{ left: 0, right: 20, top: 5, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#EDF2F7" />
                       <XAxis dataKey="month" tick={{ fontSize: 11, fill: "#718096" }} />
-                      <YAxis unit="M€" tick={{ fontSize: 11, fill: "#718096" }} />
+                      <YAxis unit="M$" tick={{ fontSize: 11, fill: "#718096" }} />
                       <Tooltip content={<CustomTooltip />} />
                       <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} />
                       <Area type="monotone" dataKey="revenue" stroke="#2B6CB0" fill="#2B6CB0" fillOpacity={0.05} name="Revenus" strokeWidth={2} dot={false} />
@@ -808,7 +1054,7 @@ export default function Home() {
                   </ResponsiveContainer>
                 </div>
 
-                {/* Revenus par Secteur - Pie Chart */}
+                {/* Revenus par Secteur */}
                 <div className="p-6 card-modern shadow-gold">
                   <h3 className="text-lg font-semibold mb-4 flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-[#f5a524]" />Revenus par Secteur</h3>
                   <ResponsiveContainer width="100%" height={280}>
@@ -820,18 +1066,18 @@ export default function Home() {
                         outerRadius={100}
                         dataKey="value"
                         animationDuration={1200}
-                        label={({ name, percent }: { name?: string; percent?: number }) => `${name ?? ''} ${((percent ?? 0) * 100).toFixed(0)}%`}
+                        label={({ name, percent }: { name?: string; percent?: number }) => `${name ?? ""} ${((percent ?? 0) * 100).toFixed(0)}%`}
                       >
                         {sectorRevenueData.map((_, i) => (
                           <Cell key={i} fill={COLORS[i % COLORS.length]} />
                         ))}
                       </Pie>
-                      <Tooltip formatter={(value) => `${value}M€`} />
+                      <Tooltip formatter={(value) => `${value}M$`} />
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
 
-                {/* Allocation Budget - Donut Chart */}
+                {/* Allocation Budget */}
                 <div className="p-6 card-modern glow-blue">
                   <h3 className="text-lg font-semibold mb-4 flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-[#2B6CB0]" />Allocation Budget</h3>
                   <ResponsiveContainer width="100%" height={280}>
@@ -844,7 +1090,7 @@ export default function Home() {
                         outerRadius={100}
                         dataKey="value"
                         animationDuration={1200}
-                        label={({ name, percent }: { name?: string; percent?: number }) => `${name ?? ''} ${((percent ?? 0) * 100).toFixed(0)}%`}
+                        label={({ name, percent }: { name?: string; percent?: number }) => `${name ?? ""} ${((percent ?? 0) * 100).toFixed(0)}%`}
                         labelLine={{ strokeWidth: 1 }}
                       >
                         {budgetAllocationData.map((_, i) => (
@@ -854,21 +1100,21 @@ export default function Home() {
                       <Tooltip />
                       <text x="50%" y="50%" textAnchor="middle" dominantBaseline="central" className="text-sm font-bold" fill="#1A202C">
                         <tspan x="50%" dy="-0.5em" fontSize="11" fill="#718096">Total</tspan>
-                        <tspan x="50%" dy="1.2em" fontSize="16" fontWeight="bold" fill="#2B6CB0">230M€</tspan>
+                        <tspan x="50%" dy="1.2em" fontSize="16" fontWeight="bold" fill="#2B6CB0">238M$</tspan>
                       </text>
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
               </div>
 
-              {/* Candlestick - Composed Chart */}
+              {/* Candlestick */}
               <div className="p-6 card-modern">
                 <h3 className="text-lg font-semibold mb-4 flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-[#b82105]" />Performance en Chandeliers</h3>
                 <ResponsiveContainer width="100%" height={320}>
                   <ComposedChart data={candlestickData} margin={{ left: 0, right: 20, top: 10, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#EDF2F7" />
                     <XAxis dataKey="month" tick={{ fontSize: 11, fill: "#718096" }} />
-                    <YAxis domain={[0, 100]} unit="M€" tick={{ fontSize: 11, fill: "#718096" }} />
+                    <YAxis domain={[0, 100]} unit="M$" tick={{ fontSize: 11, fill: "#718096" }} />
                     <Tooltip content={({ active, payload, label }) => {
                       if (!active || !payload?.length) return null;
                       const d = candlestickData.find((c) => c.month === label);
@@ -876,24 +1122,21 @@ export default function Home() {
                       return (
                         <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-3 text-xs">
                           <p className="font-semibold mb-1">{label}</p>
-                          <p className="text-[#718096]">Ouvert: {d.open}M€</p>
-                          <p className="text-[#13612e]">Haut: {d.high}M€</p>
-                          <p className="text-[#b82105]">Bas: {d.low}M€</p>
-                          <p className="font-semibold">Fermé: {d.close}M€</p>
+                          <p className="text-[#718096]">Ouvert: {d.open}M$</p>
+                          <p className="text-[#13612e]">Haut: {d.high}M$</p>
+                          <p className="text-[#b82105]">Bas: {d.low}M$</p>
+                          <p className="font-semibold">Fermé: {d.close}M$</p>
                         </div>
                       );
                     }} />
                     <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} />
-                    {/* Wicks (high-low lines) */}
                     <Line type="monotone" dataKey="high" stroke="#718096" strokeWidth={1} dot={false} name="Haut" legendType="none" />
                     <Line type="monotone" dataKey="low" stroke="#718096" strokeWidth={1} dot={false} name="Bas" legendType="none" connectNulls={false} />
-                    {/* Candle body */}
                     <Bar dataKey="close" name="Fermé" radius={[4, 4, 0, 0]} animationDuration={1500}>
                       {candlestickData.map((d, i) => (
                         <Cell key={i} fill={d.close >= d.open ? "#13612e" : "#b82105"} />
                       ))}
                     </Bar>
-                    {/* Open marker */}
                     <Line type="monotone" dataKey="open" stroke="#f5a524" strokeWidth={2} dot={{ r: 3, fill: "#f5a524" }} name="Ouvert" activeDot={false} />
                   </ComposedChart>
                 </ResponsiveContainer>
@@ -904,15 +1147,15 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          4. ROI SIMULATOR SECTION
+          8. ROI SIMULATOR SECTION
           ═══════════════════════════════════════════════════════════════════════ */}
       <section id="simulateur" className="py-24 relative bg-[#F7FAFC]">
         <div className="absolute inset-0 bg-gradient-to-b from-[#F7FAFC] via-[#EDF2F7] to-[#F7FAFC] opacity-60" />
-        <div className="absolute inset-0 opacity-[0.05]"><Image src="/images/africa-map.png" alt="" fill className="object-cover" /></div>
+        <div className="absolute inset-0 grid-pattern" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">Simulateur <span className="text-gradient-blue">ROI</span></h2>
-            <p className="text-[#718096] max-w-xl mx-auto">Estimez la rentabilité de votre prochain investissement</p>
+            <p className="text-[#718096] max-w-xl mx-auto">Estimez la rentabilité de votre prochain investissement en Guinée</p>
           </div>
 
           {/* CSV Import Zone */}
@@ -922,29 +1165,28 @@ export default function Home() {
               {csvFileName && <span className="text-xs text-[#13612e] font-medium bg-[#13612e]/10 px-2.5 py-1 rounded-full">{csvFileName}</span>}
             </div>
             <div className="gradient-border">
-            <div
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}
-              onDrop={handleDrop}
-              onClick={() => csvInputRef.current?.click()}
-              className={`border-2 border-dashed rounded-2xl p-8 text-center cursor-pointer transition-all duration-200 ${
-                isDragging ? "border-[#2B6CB0] bg-[#2B6CB0]/5" : "border-gray-300 bg-white hover:border-[#2B6CB0]/50"
-              }`}
-            >
-              <input ref={csvInputRef} type="file" accept=".csv" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) handleCSVImport(f); }} />
-              <div className="mb-3">{csvFileName ? <CheckCircle2 className="w-10 h-10 text-[#13612e] mx-auto" /> : <FileSpreadsheet className="w-10 h-10 text-[#718096] mx-auto" />}</div>
-              <p className="text-sm text-[#718096]">
-                {csvFileName ? (
-                  <span className="text-[#13612e] font-medium">{csvFileName} — Cliquez pour changer</span>
-                ) : (
-                  <>Glissez-déposez votre fichier CSV ici ou <span className="text-[#2B6CB0] font-medium">parcourez</span></>
-                )}
-              </p>
-              <p className="text-xs text-[#718096] mt-1">Colonnes requises: name, sector, budget, cost, revenue, roi, status, country</p>
-            </div>
+              <div
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
+                onClick={() => csvInputRef.current?.click()}
+                className={`border-2 border-dashed rounded-2xl p-8 text-center cursor-pointer transition-all duration-200 ${
+                  isDragging ? "border-[#2B6CB0] bg-[#2B6CB0]/5" : "border-gray-300 bg-white hover:border-[#2B6CB0]/50"
+                }`}
+              >
+                <input ref={csvInputRef} type="file" accept=".csv" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) handleCSVImport(f); }} />
+                <div className="mb-3">{csvFileName ? <CheckCircle2 className="w-10 h-10 text-[#13612e] mx-auto" /> : <FileSpreadsheet className="w-10 h-10 text-[#718096] mx-auto" />}</div>
+                <p className="text-sm text-[#718096]">
+                  {csvFileName ? (
+                    <span className="text-[#13612e] font-medium">{csvFileName} — Cliquez pour changer</span>
+                  ) : (
+                    <>Glissez-déposez votre fichier CSV ici ou <span className="text-[#2B6CB0] font-medium">parcourez</span></>
+                  )}
+                </p>
+                <p className="text-xs text-[#718096] mt-1">Colonnes requises: name, sector, budget, cost, revenue, roi, status, country</p>
+              </div>
             </div>
 
-            {/* Imported projects preview */}
             {importedProjects.length > 0 && (
               <div className="mt-4 p-4 bg-white border border-gray-200 rounded-2xl shadow-sm max-h-48 overflow-y-auto">
                 <p className="text-sm font-semibold mb-2 text-[#13612e]">{importedProjects.length} projets importés</p>
@@ -957,7 +1199,7 @@ export default function Home() {
                       <tr key={p.name} className="border-b border-gray-100">
                         <td className="py-1.5 pr-2 font-medium">{p.name}</td>
                         <td className="py-1.5 pr-2">{p.sector}</td>
-                        <td className="py-1.5 pr-2">{p.budget}M€</td>
+                        <td className="py-1.5 pr-2">{p.budget}M$</td>
                         <td className="py-1.5 pr-2 font-bold" style={{ color: p.roi >= 60 ? "#13612e" : p.roi >= 40 ? "#f5a524" : "#b82105" }}>{p.roi}%</td>
                         <td className="py-1.5">{p.country}</td>
                       </tr>
@@ -975,7 +1217,7 @@ export default function Home() {
               <div className="space-y-6">
                 <div>
                   <label className="block text-sm text-[#718096] mb-2">Nom du projet</label>
-                  <input type="text" value={simName} onChange={(e) => setSimName(e.target.value)} placeholder="Ex: Mine de Cobalt Katanga" className="w-full px-4 py-3 bg-[#F7FAFC] border border-gray-300 rounded-xl text-[#1A202C] placeholder-gray-400 focus:outline-none focus:border-[#2B6CB0] focus:ring-1 focus:ring-[#2B6CB0]/50 transition-colors" />
+                  <input type="text" value={simName} onChange={(e) => setSimName(e.target.value)} placeholder="Ex: Mine de Fer Nimba" className="w-full px-4 py-3 bg-[#F7FAFC] border border-gray-300 rounded-xl text-[#1A202C] placeholder-gray-400 focus:outline-none focus:border-[#2B6CB0] focus:ring-1 focus:ring-[#2B6CB0]/50 transition-colors" />
                 </div>
                 <div>
                   <label className="block text-sm text-[#718096] mb-2">Secteur</label>
@@ -988,7 +1230,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm text-[#718096] mb-2">Budget: <span className="text-[#2B6CB0] font-semibold">{simBudget}M€</span></label>
+                  <label className="block text-sm text-[#718096] mb-2">Budget: <span className="text-[#2B6CB0] font-semibold">{simBudget}M$</span></label>
                   <div className="flex items-center gap-4">
                     <input
                       type="number"
@@ -1001,17 +1243,10 @@ export default function Home() {
                       }}
                       className="w-28 px-3 py-2.5 bg-[#F7FAFC] border border-gray-300 rounded-xl text-sm text-center font-semibold focus:outline-none focus:border-[#2B6CB0] focus:ring-1 focus:ring-[#2B6CB0]/50 transition-colors"
                     />
-                    <input
-                      type="range"
-                      min={1}
-                      max={100}
-                      value={simBudget}
-                      onChange={(e) => setSimBudget(parseInt(e.target.value))}
-                      className="flex-1"
-                    />
-                    <span className="text-xs text-[#718096] font-medium whitespace-nowrap">M€</span>
+                    <input type="range" min={1} max={100} value={simBudget} onChange={(e) => setSimBudget(parseInt(e.target.value))} className="flex-1" />
+                    <span className="text-xs text-[#718096] font-medium whitespace-nowrap">M$</span>
                   </div>
-                  <div className="flex justify-between text-xs text-[#718096] mt-1"><span>1M€</span><span>50M€</span><span>100M€</span></div>
+                  <div className="flex justify-between text-xs text-[#718096] mt-1"><span>1M$</span><span>50M$</span><span>100M$</span></div>
                 </div>
                 <div>
                   <label className="block text-sm text-[#718096] mb-2">Durée (années)</label>
@@ -1050,7 +1285,7 @@ export default function Home() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="p-5 bg-[#13612e]/10 border border-[#13612e]/20 rounded-xl text-center">
                       <p className="text-xs text-[#718096] mb-1">Revenu Projeté</p>
-                      <p className="text-2xl font-bold text-[#13612e]">{simResults.projectedRevenue.toFixed(1)}M€</p>
+                      <p className="text-2xl font-bold text-[#13612e]">{simResults.projectedRevenue.toFixed(1)}M$</p>
                     </div>
                     <div className="p-5 bg-[#f5a524]/10 border border-[#f5a524]/20 rounded-xl text-center">
                       <p className="text-xs text-[#718096] mb-1">ROI Projeté</p>
@@ -1058,7 +1293,7 @@ export default function Home() {
                     </div>
                     <div className="p-5 bg-[#2B6CB0]/10 border border-[#2B6CB0]/20 rounded-xl text-center">
                       <p className="text-xs text-[#718096] mb-1">Rendement Annuel</p>
-                      <p className="text-2xl font-bold text-[#2B6CB0]">{simResults.annualReturn.toFixed(1)}M€</p>
+                      <p className="text-2xl font-bold text-[#2B6CB0]">{simResults.annualReturn.toFixed(1)}M$</p>
                     </div>
                     <div className="p-5 border rounded-xl text-center" style={{ background: `${simResults.riskColor}10`, borderColor: `${simResults.riskColor}33` }}>
                       <p className="text-xs text-[#718096] mb-1">Niveau de Risque</p>
@@ -1071,7 +1306,7 @@ export default function Home() {
                       <div className="h-full rounded-full transition-all duration-1000 ease-out" style={{ width: `${Math.min(simResults.projectedROI, 100)}%`, background: simResults.projectedROI > 60 ? "linear-gradient(to right, #13612e, #228B22)" : simResults.projectedROI > 35 ? "linear-gradient(to right, #f5a524, #FBBF24)" : "linear-gradient(to right, #b82105, #EF4444)" }} />
                     </div>
                   </div>
-                  <p className="text-xs text-[#718096] text-center mt-4">* Résultats estimatifs basés sur les moyennes sectorielles africaines</p>
+                  <p className="text-xs text-[#718096] text-center mt-4">* Résultats estimatifs basés sur les moyennes sectorielles guinéennes</p>
                 </div>
               ) : (
                 <div className="text-center text-[#718096]">
@@ -1086,19 +1321,19 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          5. PROJECTS SECTION
+          9. PROJECTS SECTION
           ═══════════════════════════════════════════════════════════════════════ */}
       <section id="projets" className="py-24 relative bg-white">
         <div className="absolute inset-0 bg-gradient-to-b from-white via-[#F7FAFC] to-white opacity-60" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">Portefeuille <span className="text-gradient-blue">de Projets</span></h2>
-            <p className="text-[#718096] max-w-xl mx-auto">Tous vos investissements africains en un coup d&apos;œil</p>
+            <p className="text-[#718096] max-w-xl mx-auto">Nos investissements stratégiques en Guinée</p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 mb-8 p-4 bg-white border border-gray-200 rounded-2xl shadow-sm">
             <div className="flex-1 relative">
               <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#718096]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-              <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Rechercher un projet ou pays..." className="w-full pl-10 pr-4 py-2.5 bg-[#F7FAFC] border border-gray-300 rounded-xl text-[#1A202C] placeholder-gray-400 focus:outline-none focus:border-[#2B6CB0] text-sm transition-colors" />
+              <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Rechercher un projet..." className="w-full pl-10 pr-4 py-2.5 bg-[#F7FAFC] border border-gray-300 rounded-xl text-[#1A202C] placeholder-gray-400 focus:outline-none focus:border-[#2B6CB0] text-sm transition-colors" />
             </div>
             <select value={filterSector} onChange={(e) => setFilterSector(e.target.value)} className="px-4 py-2.5 bg-[#F7FAFC] border border-gray-300 rounded-xl text-[#1A202C] text-sm focus:outline-none focus:border-[#2B6CB0] cursor-pointer transition-colors appearance-none min-w-[160px]">
               <option value="All">Tous les secteurs</option>
@@ -1114,7 +1349,7 @@ export default function Home() {
             {filteredProjects.map((project) => (
               <div key={project.name} className="p-6 card-modern card-hover group">
                 <div className="relative h-40 rounded-xl overflow-hidden mb-4">
-                  <Image src={projectImages[project.name] || "/images/projects/logistics.png"} alt={project.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <Image src={projectImages[project.name] || "/nimba/gold-nuggets.png"} alt={project.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                   <span className="absolute bottom-2 left-2 text-xs text-white/80 font-medium">{project.country}</span>
                   <span className={`absolute top-2 right-2 px-2.5 py-1 text-xs font-medium rounded-full border ${statusStyle(project.status)}`}>{project.status}</span>
@@ -1125,8 +1360,8 @@ export default function Home() {
                 </div>
                 <div className="mb-4"><span className="px-3 py-1 text-xs font-medium bg-[#EDF2F7] text-[#2D3748] rounded-full border border-gray-300">{project.sector}</span></div>
                 <div className="grid grid-cols-3 gap-3 mb-4">
-                  <div><p className="text-xs text-[#718096]">Budget</p><p className="font-semibold">{project.budget}M€</p></div>
-                  <div><p className="text-xs text-[#718096]">Revenu</p><p className="font-semibold text-[#13612e]">{project.revenue}M€</p></div>
+                  <div><p className="text-xs text-[#718096]">Budget</p><p className="font-semibold">{project.budget}M$</p></div>
+                  <div><p className="text-xs text-[#718096]">Revenu</p><p className="font-semibold text-[#13612e]">{project.revenue}M$</p></div>
                   <div><p className="text-xs text-[#718096]">ROI</p><p className="font-bold" style={{ color: project.roi >= 60 ? "#13612e" : project.roi >= 40 ? "#f5a524" : "#b82105" }}>{project.roi}%</p></div>
                 </div>
                 <div>
@@ -1145,191 +1380,7 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          6. REPORTING SECTION
-          ═══════════════════════════════════════════════════════════════════════ */}
-      <section id="reporting" className="py-24 relative bg-[#F7FAFC]">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#F7FAFC] via-[#EDF2F7] to-[#F7FAFC] opacity-60" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Rapport <span className="text-gradient-blue">Investisseurs</span></h2>
-            <p className="text-[#718096] max-w-xl mx-auto">Aperçu du rapport professionnel pour vos investisseurs</p>
-          </div>
-          <div className="p-8 card-modern">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 pb-6 border-b border-gray-200">
-              <div>
-                <h3 className="text-xl font-bold flex items-center gap-2"><Image src="/logo.png" alt="InvestFlow" width={24} height={24} className="rounded" />InvestFlow Africa — Rapport Q4 2024</h3>
-                <p className="text-sm text-[#718096] mt-1">Généré automatiquement • Confidentiel</p>
-              </div>
-              <button onClick={handleDownloadReport} className="mt-4 sm:mt-0 px-5 py-2.5 bg-[#2B6CB0]/10 border border-[#2B6CB0]/30 text-[#2B6CB0] text-sm font-medium rounded-xl hover:bg-[#2B6CB0]/20 transition-colors cursor-pointer flex items-center gap-2">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
-                Télécharger le Rapport PDF
-              </button>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-              {[{ label: "Total Projets", value: "8", color: "text-[#2B6CB0]" }, { label: "Budget Total", value: "230M€", color: "text-[#13612e]" }, { label: "ROI Moyen", value: "47.9%", color: "text-[#f5a524]" }, { label: "Revenus Totaux", value: "344.1M€", color: "text-[#13612e]" }].map((s, i) => (
-                <div key={i} className="p-4 bg-[#F7FAFC] rounded-xl border border-gray-200"><p className="text-xs text-[#718096] mb-1">{s.label}</p><p className={`text-xl font-bold ${s.color}`}>{s.value}</p></div>
-              ))}
-            </div>
-            <div className="mb-8">
-              <h4 className="text-lg font-semibold mb-4">Tableau de Performance</h4>
-              <div className="overflow-x-auto max-h-96 overflow-y-auto">
-                <table className="w-full text-sm">
-                  <thead className="sticky top-0 bg-white"><tr className="text-left text-[#718096] border-b border-gray-200">
-                    <th className="pb-3 pr-4 font-medium">Projet</th><th className="pb-3 pr-4 font-medium">Pays</th><th className="pb-3 pr-4 font-medium">Secteur</th><th className="pb-3 pr-4 font-medium text-right">Budget</th><th className="pb-3 pr-4 font-medium text-right">Revenu</th><th className="pb-3 font-medium text-right">ROI</th>
-                  </tr></thead>
-                  <tbody>
-                    {[...projects].sort((a, b) => b.roi - a.roi).map((p) => (
-                      <tr key={p.name} className="border-b border-gray-100 hover:bg-[#F7FAFC] transition-colors">
-                        <td className="py-3 pr-4 font-medium">{p.name}</td>
-                        <td className="py-3 pr-4 text-[#718096]">{p.country} ({p.countryFlag})</td>
-                        <td className="py-3 pr-4"><span className="px-2 py-0.5 text-xs bg-[#EDF2F7] rounded-full border border-gray-300">{sectorIcon(p.sector)} {p.sector}</span></td>
-                        <td className="py-3 pr-4 text-right">{p.budget}M€</td>
-                        <td className="py-3 pr-4 text-right text-[#13612e]">{p.revenue}M€</td>
-                        <td className="py-3 text-right font-bold" style={{ color: p.roi >= 60 ? "#13612e" : p.roi >= 40 ? "#f5a524" : "#b82105" }}>{p.roi}%</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div className="p-6 bg-[#2B6CB0]/5 border border-[#2B6CB0]/20 rounded-xl">
-              <h4 className="text-lg font-semibold mb-4 flex items-center gap-2"><Lightbulb className="w-5 h-5 text-[#f5a524]" /> Points Clés</h4>
-              <ul className="space-y-3">
-                {[
-                  "Le secteur minier affiche le ROI le plus élevé à 79%, avec le projet Nimba Iron Mine en Guinée",
-                  "Les projets technologiques présentent un ROI moyen de 55%, confirmant le potentiel digital africain",
-                  "6 projets sur 8 sont actuellement actifs, démontrant une exécution solide",
-                  "Le budget total de 230M€ génère 344.1M€ en revenus, soit un rendement global exceptionnel",
-                  "Les projets au Nigeria et Cameroun représentent 35% du budget total mais 34% des revenus",
-                ].map((insight, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm text-[#2D3748]"><span className="w-1.5 h-1.5 rounded-full bg-[#2B6CB0] mt-1.5 flex-shrink-0" />{insight}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════════════════
-          7. DEMO / PITCH SECTION
-          ═══════════════════════════════════════════════════════════════════════ */}
-      <section id="demo" className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0"><Image src="/images/demo-bg.png" alt="" fill className="object-cover" /></div>
-        <div className="absolute inset-0 bg-[#1A202C]/88" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-white">Démonstration <span className="text-gradient-gold">Interactive</span></h2>
-            <p className="text-gray-300 max-w-xl mx-auto">Découvrez comment InvestFlow Africa peut transformer votre gestion d&apos;investissements</p>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-            <div className="lg:col-span-2">
-              <div className="relative pl-8">
-                <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#2B6CB0] via-[#f5a524] to-[#2B6CB0]" />
-                {demoTimelineSteps.map((item, i) => (
-                  <div key={i} className="relative mb-10 last:mb-0">
-                    <div className={`absolute -left-5 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${item.color}`}>{item.step}</div>
-                    <div className="p-6 bg-white border border-gray-200 rounded-2xl shadow-sm card-hover">
-                      <div className="flex items-start gap-4">{item.icon}<div><h4 className="font-semibold text-lg mb-1">{item.title}</h4><p className="text-sm text-[#718096] leading-relaxed">{item.desc}</p></div></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="lg:sticky lg:top-24">
-              <div className="pricing-popular p-8">
-                <div className="text-center mb-6">
-                  <span className="inline-flex items-center gap-1 px-3 py-1 bg-[#2B6CB0]/10 border border-[#2B6CB0]/20 rounded-full text-[#2B6CB0] text-xs font-medium mb-4 shimmer"><Rocket className="w-3.5 h-3.5" /> Offre Spéciale</span>
-                  <h3 className="text-2xl font-bold mb-2">Offre Pilote</h3>
-                  <div className="flex items-baseline justify-center gap-1"><span className="text-4xl font-bold text-[#2B6CB0]">15 000€</span></div>
-                  <p className="text-sm text-[#718096] mt-2">Pour 3 mois d&apos;accompagnement</p>
-                </div>
-                <ul className="space-y-3 mb-8">
-                  {["Configuration complète de la plateforme", "Import de vos projets existants", "Formation de votre équipe", "Support dédié 24/7", "Rapports personnalisés", "Simulateur ROI illimité"].map((f, i) => (
-                    <li key={i} className="flex items-center gap-3 text-sm text-[#2D3748]"><svg className="w-5 h-5 text-[#2B6CB0] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>{f}</li>
-                  ))}
-                </ul>
-                <button onClick={() => setDemoModalOpen(true)} className="w-full py-4 bg-[#2B6CB0] hover:bg-[#215387] text-white font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-[#2B6CB0]/25 cursor-pointer text-lg">
-                  Demander une Démo
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="mt-12 p-6 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl">
-            <div className="flex items-start gap-4"><Lightbulb className="w-7 h-7 flex-shrink-0 text-[#F6AD55]" /><p className="text-gray-200 leading-relaxed text-sm sm:text-base">Ce que je vous montre est une version simplifiée, mais on peut aller vers une plateforme complète connectée à vos systèmes.</p></div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════════════════
-          8. PIPELINE & RISK DASHBOARD
-          ═══════════════════════════════════════════════════════════════════════ */}
-      <section id="pipeline" className="py-24 relative bg-gradient-to-b from-white via-[#EDF2F7] to-white">
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-[#F7FAFC]/60 to-white" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Pipeline &amp; <span className="text-gradient-blue">Risques</span></h2>
-            <p className="text-[#718096] max-w-xl mx-auto">Suivez votre pipeline d&apos;investissements et évaluez les risques projet par projet</p>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Pipeline Funnel - Interactive Bar Chart */}
-            <div className="p-6 card-modern glow-green">
-              <h3 className="text-lg font-semibold mb-4 flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-[#13612e]" />Pipeline d&apos;Investissement</h3>
-              {mounted && (
-                <ResponsiveContainer width="100%" height={280}>
-                  <BarChart data={pipelineData} margin={{ left: 0, right: 20, top: 5, bottom: 5 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#EDF2F7" />
-                    <XAxis dataKey="stage" tick={{ fontSize: 10, fill: "#4A5568" }} />
-                    <YAxis tick={{ fontSize: 11, fill: "#718096" }} />
-                    <Tooltip content={<CustomTooltip />} />
-                    <Bar dataKey="value" radius={[6, 6, 0, 0]} animationDuration={1500}>
-                      {pipelineData.map((entry, i) => (
-                        <Cell key={i} fill={entry.fill} />
-                      ))}
-                    </Bar>
-                  </BarChart>
-                </ResponsiveContainer>
-              )}
-            </div>
-
-            {/* Risk Assessment Matrix */}
-            <div className="p-6 card-modern">
-              <h3 className="text-lg font-semibold mb-4 flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-[#f5a524]" />Matrice de Risque</h3>
-              <div className="overflow-x-auto max-h-96 overflow-y-auto">
-                <table className="w-full text-sm">
-                  <thead className="sticky top-0 bg-white"><tr className="text-left text-[#718096] border-b border-gray-200">
-                    <th className="pb-3 pr-3 font-medium">Projet</th><th className="pb-3 pr-3 font-medium">Niveau</th><th className="pb-3 pr-3 font-medium text-center">Score</th><th className="pb-3 pr-3 font-medium">Volatilité</th><th className="pb-3 font-medium">Mitigation</th>
-                  </tr></thead>
-                  <tbody>
-                    {[
-                      { name: "Nimba Iron Mine", risk: "Medium", score: "6/10", volatility: "Moderate", mitigation: "Hedging" },
-                      { name: "Solar Plant Dakar", risk: "Low", score: "3/10", volatility: "Low", mitigation: "Diversif." },
-                      { name: "Lagos Real Estate", risk: "Medium", score: "5/10", volatility: "Moderate", mitigation: "Insurance" },
-                      { name: "Abidjan Tech Hub", risk: "Low", score: "2/10", volatility: "Low", mitigation: "Agile" },
-                      { name: "Kinshasa Agri-Business", risk: "High", score: "8/10", volatility: "High", mitigation: "Insurance" },
-                      { name: "Accra Fintech", risk: "Low", score: "2/10", volatility: "Low", mitigation: "Regulation" },
-                      { name: "Nairobi Logistics", risk: "Medium", score: "6/10", volatility: "Moderate", mitigation: "Partners" },
-                      { name: "Douala Port Extension", risk: "Medium", score: "5/10", volatility: "Moderate", mitigation: "Hedging" },
-                    ].map((r) => (
-                      <tr key={r.name} className="border-b border-gray-100 hover:bg-[#F7FAFC] transition-colors even:bg-[#F7FAFC]/50">
-                        <td className="py-2.5 pr-3 font-medium text-[#1A202C] whitespace-nowrap">{r.name}</td>
-                        <td className="py-2.5 pr-3">
-                          <span className={`px-2 py-0.5 text-xs font-medium rounded-full border ${r.risk === "Low" ? "bg-[#13612e]/10 text-[#13612e] border-[#13612e]/30" : r.risk === "Medium" ? "bg-[#f5a524]/10 text-[#f5a524] border-[#f5a524]/30" : "bg-[#b82105]/10 text-[#b82105] border-[#b82105]/30"}`}>{r.risk}</span>
-                        </td>
-                        <td className="py-2.5 pr-3 text-center"><span className={`font-semibold ${r.risk === "Low" ? "text-[#13612e]" : r.risk === "Medium" ? "text-[#f5a524]" : "text-[#b82105]"}`}>{r.score}</span></td>
-                        <td className="py-2.5 pr-3 text-[#718096]">{r.volatility}</td>
-                        <td className="py-2.5 text-[#718096]">{r.mitigation}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════════════════
-          9. ADVANCED ANALYTICS
+          10. ADVANCED ANALYTICS
           ═══════════════════════════════════════════════════════════════════════ */}
       <section id="analytics" className="py-24 relative bg-[#F7FAFC]">
         <div className="absolute inset-0 bg-gradient-to-b from-[#F7FAFC] via-[#EDF2F7] to-[#F7FAFC] opacity-60" />
@@ -1347,10 +1398,10 @@ export default function Home() {
                   <RadarChart data={radarData} cx="50%" cy="50%" outerRadius="70%">
                     <PolarGrid stroke="#EDF2F7" />
                     <PolarAngleAxis dataKey="metric" tick={{ fontSize: 11, fill: "#4A5568" }} />
-                    <Radar name="Nimba Iron" dataKey="Nimba Iron" stroke="#2B6CB0" fill="#2B6CB0" fillOpacity={0.15} strokeWidth={2} />
-                    <Radar name="Lagos RE" dataKey="Lagos Real Estate" stroke="#13612e" fill="#13612e" fillOpacity={0.1} strokeWidth={2} />
-                    <Radar name="Accra Fintech" dataKey="Accra Fintech" stroke="#f5a524" fill="#f5a524" fillOpacity={0.1} strokeWidth={2} />
-                    <Radar name="Solar Dakar" dataKey="Solar Plant Dakar" stroke="#b82105" fill="#b82105" fillOpacity={0.1} strokeWidth={2} />
+                    <Radar name="Mine Nimba" dataKey="Mine Nimba" stroke="#2B6CB0" fill="#2B6CB0" fillOpacity={0.15} strokeWidth={2} />
+                    <Radar name="Zone Dubréka" dataKey="Zone Dubréka" stroke="#13612e" fill="#13612e" fillOpacity={0.1} strokeWidth={2} />
+                    <Radar name="Hub Conakry" dataKey="Hub Conakry" stroke="#f5a524" fill="#f5a524" fillOpacity={0.1} strokeWidth={2} />
+                    <Radar name="Solaire Kindia" dataKey="Solaire Kindia" stroke="#b82105" fill="#b82105" fillOpacity={0.1} strokeWidth={2} />
                     <Legend wrapperStyle={{ fontSize: 11, paddingTop: 8 }} />
                     <Tooltip />
                   </RadarChart>
@@ -1364,7 +1415,7 @@ export default function Home() {
                   <BarChart data={costStructureData} margin={{ left: 10, right: 20, top: 5, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#EDF2F7" />
                     <XAxis dataKey="name" tick={{ fontSize: 10, fill: "#4A5568" }} />
-                    <YAxis unit="M€" tick={{ fontSize: 11, fill: "#718096" }} />
+                    <YAxis unit="M$" tick={{ fontSize: 11, fill: "#718096" }} />
                     <Tooltip content={<CustomTooltip />} />
                     <Legend wrapperStyle={{ fontSize: 11, paddingTop: 8 }} />
                     <Bar dataKey="budget" stackId="a" name="Budget" fill="#2B6CB0" radius={[0, 0, 0, 0]} />
@@ -1381,13 +1432,13 @@ export default function Home() {
                   <AreaChart data={cumulativeROIData} margin={{ left: 0, right: 20, top: 5, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#EDF2F7" />
                     <XAxis dataKey="month" tick={{ fontSize: 11, fill: "#718096" }} />
-                    <YAxis unit="M€" tick={{ fontSize: 11, fill: "#718096" }} />
+                    <YAxis unit="M$" tick={{ fontSize: 11, fill: "#718096" }} />
                     <Tooltip content={<CustomTooltip />} />
                     <Legend wrapperStyle={{ fontSize: 11, paddingTop: 8 }} />
-                    <Area type="monotone" dataKey="Mining" stackId="1" stroke="#2B6CB0" fill="#2B6CB0" fillOpacity={0.4} name="Mining" />
-                    <Area type="monotone" dataKey="Technology" stackId="1" stroke="#13612e" fill="#13612e" fillOpacity={0.4} name="Technology" />
-                    <Area type="monotone" dataKey="Energy" stackId="1" stroke="#f5a524" fill="#f5a524" fillOpacity={0.4} name="Energy" />
-                    <Area type="monotone" dataKey="Logistics" stackId="1" stroke="#b82105" fill="#b82105" fillOpacity={0.4} name="Logistics" />
+                    <Area type="monotone" dataKey="Mines" stackId="1" stroke="#2B6CB0" fill="#2B6CB0" fillOpacity={0.4} name="Mines" />
+                    <Area type="monotone" dataKey="Technologie" stackId="1" stroke="#13612e" fill="#13612e" fillOpacity={0.4} name="Technologie" />
+                    <Area type="monotone" dataKey="Énergie" stackId="1" stroke="#f5a524" fill="#f5a524" fillOpacity={0.4} name="Énergie" />
+                    <Area type="monotone" dataKey="Industrie" stackId="1" stroke="#b82105" fill="#b82105" fillOpacity={0.4} name="Industrie" />
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
@@ -1399,13 +1450,13 @@ export default function Home() {
                   <ComposedChart data={waterfallData} margin={{ left: 0, right: 20, top: 5, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#EDF2F7" />
                     <XAxis dataKey="name" tick={{ fontSize: 11, fill: "#4A5568" }} />
-                    <YAxis unit="M€" tick={{ fontSize: 11, fill: "#718096" }} />
+                    <YAxis unit="M$" tick={{ fontSize: 11, fill: "#718096" }} />
                     <Tooltip content={({ active, payload, label }) => {
                       if (!active || !payload?.length) return null;
                       return (
                         <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-3 text-xs">
                           <p className="font-semibold mb-1">{label}</p>
-                          {payload.map((p, i) => p.value !== 0 && <p key={i} style={{ color: p.color }}>{p.name}: {p.value}M€</p>)}
+                          {payload.map((p, i) => p.value !== 0 && <p key={i} style={{ color: p.color }}>{p.name}: {p.value}M$</p>)}
                         </div>
                       );
                     }} />
@@ -1426,27 +1477,23 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          10. TESTIMONIALS
+          11. TESTIMONIALS
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section id="temoignages" className="py-24 relative bg-white">
+      <section className="py-24 relative bg-white">
         <div className="absolute inset-0 bg-gradient-to-b from-white via-[#F7FAFC] to-white opacity-60" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Ce que disent nos <span className="text-gradient-blue">Investisseurs</span></h2>
-            <p className="text-[#718096] max-w-xl mx-auto">Retours d&apos;expérience de nos partenaires en Afrique</p>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Ce que disent nos <span className="text-gradient-blue">Partenaires</span></h2>
+            <p className="text-[#718096] max-w-xl mx-auto">Retours d&apos;expérience de nos partenaires en Guinée</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { name: "Aminata Diallo", title: "PDG, Afrika Capital Group", quote: "InvestFlow Africa a transformé notre façon de gérer nos portefeuilles. La visibilité en temps réel et les rapports automatiques nous font gagner un temps précieux.", avatar: "/images/avatar-woman-1.png", gradient: "from-[#2B6CB0] to-[#13612e]" },
-              { name: "Jean-Marc Kouassi", title: "Directeur Investissements, SIFCA Group", quote: "Le simulateur ROI est remarquable. Il nous permet d&apos;évaluer rapidement de nouvelles opportunités et de prendre des décisions éclairées en quelques minutes.", avatar: "/images/avatar-man-1.png", gradient: "from-[#f5a524] to-[#f7630c]" },
-              { name: "Fatima Alhousseini", title: "Partner, Sahel Ventures", quote: "La présentation aux investisseurs est devenue un jeu d&apos;enfant. Les graphiques interactifs et les données en temps réel impressionnent à chaque réunion.", avatar: "/images/avatar-woman-2.png", gradient: "from-[#7C5CFC] to-[#2B9EB3]" },
-            ].map((t, i) => (
+            {nrcTestimonials.map((t, i) => (
               <div key={i} className="p-6 card-modern card-hover">
                 <span className="quote-mark block mb-4 select-none">&ldquo;</span>
                 <p className="text-sm text-[#4A5568] leading-relaxed mb-6">{t.quote}</p>
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-offset-2 ring-[#2B6CB0]/30 shadow-md">
-                    <Image src={t.avatar} alt={t.name} width={48} height={48} className="object-cover" />
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold shadow-md bg-gradient-to-br ${t.gradient}`}>
+                    {t.name.split(" ").map((n) => n[0]).join("")}
                   </div>
                   <div><p className="font-semibold text-sm">{t.name}</p><p className="text-xs text-[#718096]">{t.title}</p></div>
                 </div>
@@ -1462,7 +1509,7 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          11. PRICING
+          12. PRICING
           ═══════════════════════════════════════════════════════════════════════ */}
       <section id="tarifs" className="py-24 relative bg-[#F7FAFC]">
         <div className="absolute inset-0 bg-gradient-to-b from-[#F7FAFC] via-[#EDF2F7] to-[#F7FAFC] opacity-60" />
@@ -1474,17 +1521,17 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
             {[
               {
-                name: "Starter", price: "5 000€", period: "/mois", desc: "Pour les PME débutant en gestion d&apos;investissements",
+                name: "Starter", price: "5 000$", period: "/mois", desc: "Pour les PME débutant en gestion d'investissements",
                 features: ["5 projets maximum", "Tableau de bord basique", "Rapports mensuels", "Support par email"],
                 cta: "Demander une Démo", popular: false,
               },
               {
-                name: "Professional", price: "15 000€", period: "/mois", desc: "Pour les entreprises avec un portefeuille actif",
-                features: ["Projets illimités", "Dashboard avancé", "Simulateur ROI", "Rapports personnalisés", "Support prioritaire", "API d&apos;intégration"],
+                name: "Professional", price: "15 000$", period: "/mois", desc: "Pour les entreprises avec un portefeuille actif",
+                features: ["Projets illimités", "Dashboard avancé", "Simulateur ROI", "Rapports personnalisés", "Support prioritaire", "API d'intégration"],
                 cta: "Choisir Professional", popular: true,
               },
               {
-                name: "Enterprise", price: "Sur mesure", period: "", desc: "Pour les grands groupes et fonds d&apos;investissement",
+                name: "Enterprise", price: "Sur mesure", period: "", desc: "Pour les grands groupes et fonds d'investissement",
                 features: ["Projets illimités", "Analytics avancés", "Multi-utilisateurs", "SAML/SSO", "SLA garanti", "Déploiement on-premise"],
                 cta: "Nous Contacter", popular: false,
               },
@@ -1518,7 +1565,7 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          12. CONTACT SECTION
+          13. CONTACT SECTION
           ═══════════════════════════════════════════════════════════════════════ */}
       <section id="contact" className="py-24 relative bg-white">
         <div className="absolute inset-0 dot-pattern" />
@@ -1562,7 +1609,7 @@ export default function Home() {
                   </div>
                   <div>
                     <label className="block text-sm text-[#718096] mb-1.5">Téléphone</label>
-                    <input value={contactPhone} onChange={(e) => setContactPhone(e.target.value)} className="w-full px-4 py-2.5 bg-[#F7FAFC] border border-gray-300 rounded-xl text-sm focus:outline-none focus:border-[#2B6CB0]" placeholder="+225 XX XX XX XX" />
+                    <input value={contactPhone} onChange={(e) => setContactPhone(e.target.value)} className="w-full px-4 py-2.5 bg-[#F7FAFC] border border-gray-300 rounded-xl text-sm focus:outline-none focus:border-[#2B6CB0]" placeholder="+224 XXX XX XX XX" />
                   </div>
                 </div>
                 <div>
@@ -1575,23 +1622,26 @@ export default function Home() {
               </form>
             </div>
             <div className="space-y-6">
+              {/* Contact Info */}
               <div className="p-6 card-modern">
                 <h4 className="font-semibold mb-4">Informations de Contact</h4>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
                     <div className="w-9 h-9 rounded-lg bg-[#2B6CB0]/10 flex items-center justify-center flex-shrink-0"><svg className="w-4 h-4 text-[#2B6CB0]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg></div>
-                    <div><p className="text-sm text-[#718096]">Email</p><p className="text-sm font-medium">contact@investflow.africa</p></div>
+                    <div><p className="text-sm text-[#718096]">Email</p><p className="text-sm font-medium">contact@nimba-ressources-company.com</p></div>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-9 h-9 rounded-lg bg-[#13612e]/10 flex items-center justify-center flex-shrink-0"><svg className="w-4 h-4 text-[#13612e]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg></div>
-                    <div><p className="text-sm text-[#718096]">Téléphone</p><p className="text-sm font-medium">+225 01 23 45 67 89</p></div>
+                    <div><p className="text-sm text-[#718096]">Téléphone</p><p className="text-sm font-medium">+224 612 82 63 49<br />+224 623 42 50 73</p></div>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-9 h-9 rounded-lg bg-[#f5a524]/10 flex items-center justify-center flex-shrink-0"><svg className="w-4 h-4 text-[#f5a524]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg></div>
-                    <div><p className="text-sm text-[#718096]">Adresse</p><p className="text-sm font-medium">Cocody Riviera, Abidjan, Côte d&apos;Ivoire</p></div>
+                    <div><p className="text-sm text-[#718096]">Adresse</p><p className="text-sm font-medium">Camayenne en face de la mosquée Fayçal,<br />Commune de Dixinn, Conakry, Guinée</p></div>
                   </div>
                 </div>
               </div>
+
+              {/* Response Time */}
               <div className="p-6 bg-[#2B6CB0]/5 border border-[#2B6CB0]/20 rounded-2xl">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-9 h-9 rounded-lg bg-[#2B6CB0]/10 flex items-center justify-center"><svg className="w-4 h-4 text-[#2B6CB0]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
@@ -1599,154 +1649,16 @@ export default function Home() {
                 </div>
                 <p className="text-sm text-[#718096]">Notre équipe s&apos;engage à répondre à toutes les demandes dans un délai de 24 heures ouvrées.</p>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════════
-          13. INNOVATION FEATURES - 12 Fonctionnalités Recommandées
-          ═══════════════════════════════════════════════════════════════════════ */}
-      <section id="features" className="py-24 relative bg-gradient-to-b from-[#F7FAFC] via-white to-[#F7FAFC]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-[#2B6CB0]/10 text-[#2B6CB0] text-sm font-semibold mb-4">Innovation 2026</span>
-            <h2 className="text-4xl font-bold mb-4">Fonctionnalités <span className="text-[#2B6CB0]">Innovantes</span></h2>
-            <p className="text-lg text-[#718096] max-w-3xl mx-auto">12 fonctionnalités stratégiques pour transformer InvestFlow Africa en plateforme SaaS leader du marché africain</p>
-          </div>
-
-          {/* Feature Priority Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
-            {[
-              { icon: <Bell className="w-6 h-6" />, title: "Alertes IA Temps Réel", desc: "Notifications intelligentes ML pour opportunités et risques", priority: "Haute", priorityColor: "bg-[#13612e]", color: "text-[#2B6CB0]", impact: 95 },
-              { icon: <Smartphone className="w-6 h-6" />, title: "Mobile App iOS/Android", desc: "Application native avec biometrie et mode hors-ligne", priority: "Haute", priorityColor: "bg-[#13612e]", color: "text-[#13612e]", impact: 90 },
-              { icon: <Globe className="w-6 h-6" />, title: "Multi-Devises & Forex", desc: "25 devises africaines + 10 internationales en temps réel", priority: "Haute", priorityColor: "bg-[#13612e]", color: "text-[#D4942A]", impact: 85 },
-              { icon: <Shield className="w-6 h-6" />, title: "Compliance KYC/AML", desc: "Vérification identité biométrique et screening sanctions", priority: "Moyenne", priorityColor: "bg-[#D4942A]", color: "text-[#7C3AED]", impact: 80 },
-              { icon: <Code2 className="w-6 h-6" />, title: "API Open Banking", desc: "Connectivité Ecobank, UBA, Standard Chartered", priority: "Moyenne", priorityColor: "bg-[#D4942A]", color: "text-[#2B6CB0]", impact: 85 },
-              { icon: <Users className="w-6 h-6" />, title: "Collaboration Équipe", desc: "Partage portefeuille, approbations multi-niveaux", priority: "Haute", priorityColor: "bg-[#13612e]", color: "text-[#13612e]", impact: 75 },
-              { icon: <FileBarChart className="w-6 h-6" />, title: "Rapports Automatisés", desc: "PDF/Word/Excel personnalisés avec planning recurrent", priority: "Haute", priorityColor: "bg-[#13612e]", color: "text-[#2B6CB0]", impact: 90 },
-              { icon: <Calculator className="w-6 h-6" />, title: "Simulation Monte Carlo", desc: "Modèles probabilistes avancés d'évaluation des risques", priority: "Évaluer", priorityColor: "bg-[#94A3B8]", color: "text-[#718096]", impact: 70 },
-              { icon: <MapPin className="w-6 h-6" />, title: "Cartographie GIS", desc: "Visualisation géospatiale interactive des projets", priority: "Évaluer", priorityColor: "bg-[#94A3B8]", color: "text-[#D4942A]", impact: 65 },
-              { icon: <Leaf className="w-6 h-6" />, title: "ESG & Impact", desc: "Scoring ESG et reporting impact social/environnemental", priority: "Moyenne", priorityColor: "bg-[#D4942A]", color: "text-[#059669]", impact: 70 },
-              { icon: <Bot className="w-6 h-6" />, title: "Chatbot Conseiller IA", desc: "Assistant virtuel pour decisions d'investissement", priority: "Évaluer", priorityColor: "bg-[#94A3B8]", color: "text-[#7C3AED]", impact: 60 },
-              { icon: <Palette className="w-6 h-6" />, title: "White Label SaaS", desc: "Rebranding complet pour banques et sociétés de gestion", priority: "Moyenne", priorityColor: "bg-[#D4942A]", color: "text-[#2B6CB0]", impact: 85 },
-            ].map((f, i) => (
-              <div key={i} className="group relative p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:border-[#2B6CB0]/20 transition-all duration-300 cursor-pointer overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#2B6CB0] to-[#13612e] opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="relative pl-3">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className={`p-3 rounded-xl bg-[${f.color}]/10 ${f.color}`}>{f.icon}</div>
-                    <div className="flex items-center gap-2">
-                      <span className={`text-xs font-semibold px-2.5 py-1 rounded-full text-white ${f.priorityColor}`}>{f.priority}</span>
-                      <div className="text-right">
-                        <div className="text-xs text-[#718096]">Impact</div>
-                        <div className="text-sm font-bold text-[#1A202C]">{f.impact}%</div>
-                      </div>
-                    </div>
-                  </div>
-                  <h3 className="text-base font-bold mb-2 text-[#1A202C]">{f.title}</h3>
-                  <p className="text-sm text-[#718096] leading-relaxed">{f.desc}</p>
-                  {/* Impact bar */}
-                  <div className="mt-4 h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                    <div className="h-full rounded-full bg-gradient-to-r from-[#2B6CB0] to-[#13612e] transition-all duration-700" style={{ width: `${f.impact}%` }} />
-                  </div>
+              {/* Cityscape Image */}
+              <div className="relative rounded-2xl overflow-hidden h-48">
+                <Image src="/nimba/cityscape.jpg" alt="Conakry" fill className="object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1A202C]/60 to-transparent" />
+                <div className="absolute bottom-4 left-4 text-white">
+                  <p className="font-bold text-sm">Conakry, Guinée</p>
+                  <p className="text-xs text-gray-200">Siège social — NRC SA-CV</p>
                 </div>
               </div>
-            ))}
-          </div>
-
-          {/* Interactive AI Alerts Demo */}
-          <div className="mb-20">
-            <h3 className="text-2xl font-bold mb-2 text-center">Démonstration : <span className="text-[#2B6CB0]">Alertes IA Temps Réel</span></h3>
-            <p className="text-[#718096] text-center mb-8">Système de surveillance intelligente avec 200+ signaux analysés en temps réel</p>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div className="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 rounded-lg bg-[#13612e]/10 text-[#13612e]"><Bell className="w-5 h-5" /></div>
-                  <h4 className="font-bold text-lg">Alertes Actives</h4>
-                  <span className="ml-auto flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-50 text-[#13612e] text-xs font-semibold"><span className="w-2 h-2 rounded-full bg-[#13612e] animate-pulse" /> Live</span>
-                </div>
-                <div className="space-y-3">
-                  {[
-                    { type: "Opportunité", msg: "Surperformance Mines +4.2% en 24h", time: "Il y a 2 min", color: "border-l-[#13612e] bg-[#13612e]/5" },
-                    { type: "Risque", msg: "Volatilité FCFA/USD dépasse le seuil 2.1%", time: "Il y a 8 min", color: "border-l-[#D4942A] bg-[#D4942A]/5" },
-                    { type: "Info", msg: "Nouveau projet Agriculture validé (Accra)", time: "Il y a 15 min", color: "border-l-[#2B6CB0] bg-[#2B6CB0]/5" },
-                    { type: "Alerte", msg: "ROI Tech Lagos atteint le target 45%", time: "Il y a 32 min", color: "border-l-[#7C3AED] bg-[#7C3AED]/5" },
-                    { type: "Risque", msg: "Corrélation anormale détectée Énergie/Secteur", time: "Il y a 1h", color: "border-l-[#D4942A] bg-[#D4942A]/5" },
-                  ].map((a, i) => (
-                    <div key={i} className={`p-3 rounded-xl border-l-4 ${a.color} flex items-center gap-3`}>
-                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${a.type === "Opportunité" ? "bg-[#13612e] text-white" : a.type === "Risque" ? "bg-[#D4942A] text-white" : a.type === "Alerte" ? "bg-[#7C3AED] text-white" : "bg-[#2B6CB0] text-white"}`}>{a.type}</span>
-                      <p className="text-sm text-[#1A202C] flex-1">{a.msg}</p>
-                      <span className="text-xs text-[#718096] whitespace-nowrap">{a.time}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 rounded-lg bg-[#2B6CB0]/10 text-[#2B6CB0]"><Globe className="w-5 h-5" /></div>
-                  <h4 className="font-bold text-lg">Multi-Devises en Temps Réel</h4>
-                  <span className="ml-auto flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-[#2B6CB0] text-xs font-semibold"><RefreshCw className="w-3 h-3" /> Auto</span>
-                </div>
-                <div className="space-y-3">
-                  {[
-                    { from: "EUR", to: "XOF", rate: "655.96", change: "+0.12%", flag1: "🇪🇺", flag2: "🇸🇳" },
-                    { from: "USD", to: "XOF", rate: "604.82", change: "-0.05%", flag1: "🇺🇸", flag2: "🇨🇮" },
-                    { from: "EUR", to: "NGN", rate: "1,632.50", change: "+0.34%", flag1: "🇪🇺", flag2: "🇳🇬" },
-                    { from: "USD", to: "GHS", rate: "12.85", change: "-0.18%", flag1: "🇺🇸", flag2: "🇬🇭" },
-                    { from: "GBP", to: "KES", rate: "193.42", change: "+0.08%", flag1: "🇬🇧", flag2: "🇰🇪" },
-                  ].map((c, i) => (
-                    <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-[#F7FAFC] hover:bg-gray-50 transition-colors">
-                      <div className="flex items-center gap-2">
-                        <span className="text-lg">{c.flag1}</span>
-                        <span className="text-sm font-bold">{c.from}</span>
-                        <span className="text-[#718096]"><RefreshCw className="w-3 h-3" /></span>
-                        <span className="text-lg">{c.flag2}</span>
-                        <span className="text-sm font-bold">{c.to}</span>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-sm font-bold text-[#1A202C]">{c.rate}</div>
-                        <div className={`text-xs font-semibold ${c.change.startsWith("+") ? "text-[#13612e]" : "text-red-500"}`}>{c.change}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Roadmap Timeline */}
-          <div>
-            <h3 className="text-2xl font-bold mb-2 text-center">Feuille de Route <span className="text-[#D4942A]">2026-2027</span></h3>
-            <p className="text-[#718096] text-center mb-10">Plan de développement avec un budget de 2.4M€ et un ROI projeté de 340%</p>
-            <div className="relative">
-              <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#2B6CB0] via-[#D4942A] to-[#13612e]" />
-              {[
-                { quarter: "T1 2026", title: "Alertes IA + Mobile MVP", items: ["Alpha alertes ML (50 testeurs)", "Wireframes app mobile", "Spécifications API Open Banking"], status: "En cours" },
-                { quarter: "T2 2026", title: "Mobile Beta + API v1", items: ["Alertes IA en production", "App mobile beta (200 téléchargements)", "Connecteurs bancaires Ecobank/UBA"], status: "Planifié" },
-                { quarter: "T3 2026", title: "Mobile Prod + ESG", items: ["App mobile en production", "Module ESG & Impact", "Compliance KYC/AML"], status: "Planifié" },
-                { quarter: "T4 2026", title: "White Label + API v2", items: ["White Label v1 (3 pilotes)", "API v2 avec webhooks", "Simulation Monte Carlo"], status: "Planifié" },
-                { quarter: "T1 2027", title: "Chatbot IA + GIS", items: ["White Label production (8 clients)", "Chatbot conseiller", "Cartographie géospatiale"], status: "Futur" },
-                { quarter: "T2 2027", title: "Scale & Optimisation", items: ["15 clients White Label", "5 000 utilisateurs actifs mobile", "ML avancé prédictif"], status: "Futur" },
-              ].map((step, i) => (
-                <div key={i} className={`relative flex items-start gap-6 mb-10 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
-                  <div className="absolute left-6 md:left-1/2 w-4 h-4 -translate-x-1/2 rounded-full border-4 border-white bg-[#2B6CB0] shadow-md z-10" />
-                  <div className={`hidden md:block w-5/12 ${i % 2 === 0 ? "text-right" : "text-left"}`}>
-                    <span className={`text-xs font-bold px-3 py-1 rounded-full ${step.status === "En cours" ? "bg-[#13612e] text-white" : step.status === "Planifié" ? "bg-[#2B6CB0]/10 text-[#2B6CB0]" : "bg-gray-100 text-[#718096]"}`}>{step.quarter}</span>
-                  </div>
-                  <div className="ml-14 md:ml-0 md:w-5/12 p-5 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                    <h4 className="font-bold text-base mb-3">{step.title}</h4>
-                    <ul className="space-y-2">
-                      {step.items.map((item, j) => (
-                        <li key={j} className="flex items-start gap-2 text-sm text-[#718096]">
-                          <CheckCircle2 className="w-4 h-4 text-[#13612e] mt-0.5 flex-shrink-0" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </div>
@@ -1758,18 +1670,22 @@ export default function Home() {
       <footer className="relative bg-gradient-to-br from-[#0F1A2E] to-[#1A202C] text-white py-16">
         <div className="section-divider w-full absolute top-0 left-0 right-0" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Footer slogan */}
+          <div className="text-center mb-12">
+            <p className="text-lg font-semibold" style={{ color: "#988037" }}>&ldquo;Investir souverainement, développer durablement.&rdquo;</p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <Image src="/logo.png" alt="InvestFlow" width={32} height={32} className="rounded-lg" />
-                <span className="text-lg font-bold">InvestFlow <span className="text-[#2B6CB0]">Africa</span></span>
+                <Image src="/nimba/NRC-blanc.png" alt="NRC SA-CV" width={32} height={32} className="rounded-lg" />
+                <span className="text-lg font-bold" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Nimba Ressources <span className="text-[#63B3ED]">Company</span></span>
               </div>
-              <p className="text-sm text-gray-400 leading-relaxed">Plateforme de gestion d&apos;investissements pour le marché africain.</p>
+              <p className="text-sm text-gray-400 leading-relaxed">Architecte d&apos;Investissements Souverains — Société guinéenne spécialisée dans la structuration et la gestion de projets stratégiques.</p>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Navigation</h4>
               <ul className="space-y-2">
-                {navItems.slice(0, 5).map((item) => (
+                {navItems.map((item) => (
                   <li key={item.href}><button onClick={() => scrollToSection(item.href)} className="text-sm text-gray-400 hover:text-white transition-colors cursor-pointer">{item.label}</button></li>
                 ))}
               </ul>
@@ -1777,23 +1693,26 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-4">Services</h4>
               <ul className="space-y-2">
-                {["Dashboard Financier", "Simulateur ROI", "Rapports Investisseurs", "Analytics Avancés", "API Intégration"].map((s) => (
-                  <li key={s}><span className="text-sm text-gray-400">{s}</span></li>
+                {nrcServices.map((s, i) => (
+                  <li key={i}><span className="text-sm text-gray-400">{s.title}</span></li>
                 ))}
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Contact</h4>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li>contact@investflow.africa</li>
-                <li>+225 01 23 45 67 89</li>
-                <li>Abidjan, Côte d&apos;Ivoire</li>
+                <li>contact@nimba-ressources-company.com</li>
+                <li>+224 612 82 63 49</li>
+                <li>+224 623 42 50 73</li>
+                <li>Conakry, Guinée</li>
               </ul>
+              <div className="mt-4">
+                <a href="https://www.nimba-ressources-company.com" target="_blank" rel="noopener noreferrer" className="text-sm text-[#63B3ED] hover:underline">www.nimba-ressources-company.com</a>
+              </div>
             </div>
           </div>
           <div className="border-t border-gray-700 pt-8 text-center text-sm text-gray-500">
-            © 2024 InvestFlow Africa. Tous droits réservés.
-            <span className="block mt-2 text-xs text-gray-600">Powered by Nimba Ressources Company</span>
+            Copyright © 2025 Nimba Ressources Company SA-CV. Tous droits réservés.
           </div>
         </div>
       </footer>

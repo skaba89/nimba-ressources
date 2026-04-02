@@ -15,7 +15,9 @@ import {
   Search, Lightbulb, FileSpreadsheet, CheckCircle2, Rocket,
   Link2, X,
   Hammer, Cpu, Wheat, Truck, ClipboardList, DollarSign,
-  LayoutDashboard
+  LayoutDashboard, Bell, Smartphone, Shield, Globe, Bot,
+  FileBarChart, Palette, Leaf, Users, Code2,
+  MapPin, Calculator, RefreshCw
 } from "lucide-react";
 
 // ─── Data ───────────────────────────────────────────────────────────────────
@@ -1603,7 +1605,155 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          13. FOOTER
+          13. INNOVATION FEATURES - 12 Fonctionnalités Recommandées
+          ═══════════════════════════════════════════════════════════════════════ */}
+      <section id="features" className="py-24 relative bg-gradient-to-b from-[#F7FAFC] via-white to-[#F7FAFC]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-[#2B6CB0]/10 text-[#2B6CB0] text-sm font-semibold mb-4">Innovation 2026</span>
+            <h2 className="text-4xl font-bold mb-4">Fonctionnalités <span className="text-[#2B6CB0]">Innovantes</span></h2>
+            <p className="text-lg text-[#718096] max-w-3xl mx-auto">12 fonctionnalités stratégiques pour transformer InvestFlow Africa en plateforme SaaS leader du marché africain</p>
+          </div>
+
+          {/* Feature Priority Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+            {[
+              { icon: <Bell className="w-6 h-6" />, title: "Alertes IA Temps Réel", desc: "Notifications intelligentes ML pour opportunités et risques", priority: "Haute", priorityColor: "bg-[#13612e]", color: "text-[#2B6CB0]", impact: 95 },
+              { icon: <Smartphone className="w-6 h-6" />, title: "Mobile App iOS/Android", desc: "Application native avec biometrie et mode hors-ligne", priority: "Haute", priorityColor: "bg-[#13612e]", color: "text-[#13612e]", impact: 90 },
+              { icon: <Globe className="w-6 h-6" />, title: "Multi-Devises & Forex", desc: "25 devises africaines + 10 internationales en temps réel", priority: "Haute", priorityColor: "bg-[#13612e]", color: "text-[#D4942A]", impact: 85 },
+              { icon: <Shield className="w-6 h-6" />, title: "Compliance KYC/AML", desc: "Vérification identité biométrique et screening sanctions", priority: "Moyenne", priorityColor: "bg-[#D4942A]", color: "text-[#7C3AED]", impact: 80 },
+              { icon: <Code2 className="w-6 h-6" />, title: "API Open Banking", desc: "Connectivité Ecobank, UBA, Standard Chartered", priority: "Moyenne", priorityColor: "bg-[#D4942A]", color: "text-[#2B6CB0]", impact: 85 },
+              { icon: <Users className="w-6 h-6" />, title: "Collaboration Équipe", desc: "Partage portefeuille, approbations multi-niveaux", priority: "Haute", priorityColor: "bg-[#13612e]", color: "text-[#13612e]", impact: 75 },
+              { icon: <FileBarChart className="w-6 h-6" />, title: "Rapports Automatisés", desc: "PDF/Word/Excel personnalisés avec planning recurrent", priority: "Haute", priorityColor: "bg-[#13612e]", color: "text-[#2B6CB0]", impact: 90 },
+              { icon: <Calculator className="w-6 h-6" />, title: "Simulation Monte Carlo", desc: "Modèles probabilistes avancés d'évaluation des risques", priority: "Évaluer", priorityColor: "bg-[#94A3B8]", color: "text-[#718096]", impact: 70 },
+              { icon: <MapPin className="w-6 h-6" />, title: "Cartographie GIS", desc: "Visualisation géospatiale interactive des projets", priority: "Évaluer", priorityColor: "bg-[#94A3B8]", color: "text-[#D4942A]", impact: 65 },
+              { icon: <Leaf className="w-6 h-6" />, title: "ESG & Impact", desc: "Scoring ESG et reporting impact social/environnemental", priority: "Moyenne", priorityColor: "bg-[#D4942A]", color: "text-[#059669]", impact: 70 },
+              { icon: <Bot className="w-6 h-6" />, title: "Chatbot Conseiller IA", desc: "Assistant virtuel pour decisions d'investissement", priority: "Évaluer", priorityColor: "bg-[#94A3B8]", color: "text-[#7C3AED]", impact: 60 },
+              { icon: <Palette className="w-6 h-6" />, title: "White Label SaaS", desc: "Rebranding complet pour banques et sociétés de gestion", priority: "Moyenne", priorityColor: "bg-[#D4942A]", color: "text-[#2B6CB0]", impact: 85 },
+            ].map((f, i) => (
+              <div key={i} className="group relative p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:border-[#2B6CB0]/20 transition-all duration-300 cursor-pointer overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#2B6CB0] to-[#13612e] opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative pl-3">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className={`p-3 rounded-xl bg-[${f.color}]/10 ${f.color}`}>{f.icon}</div>
+                    <div className="flex items-center gap-2">
+                      <span className={`text-xs font-semibold px-2.5 py-1 rounded-full text-white ${f.priorityColor}`}>{f.priority}</span>
+                      <div className="text-right">
+                        <div className="text-xs text-[#718096]">Impact</div>
+                        <div className="text-sm font-bold text-[#1A202C]">{f.impact}%</div>
+                      </div>
+                    </div>
+                  </div>
+                  <h3 className="text-base font-bold mb-2 text-[#1A202C]">{f.title}</h3>
+                  <p className="text-sm text-[#718096] leading-relaxed">{f.desc}</p>
+                  {/* Impact bar */}
+                  <div className="mt-4 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                    <div className="h-full rounded-full bg-gradient-to-r from-[#2B6CB0] to-[#13612e] transition-all duration-700" style={{ width: `${f.impact}%` }} />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Interactive AI Alerts Demo */}
+          <div className="mb-20">
+            <h3 className="text-2xl font-bold mb-2 text-center">Démonstration : <span className="text-[#2B6CB0]">Alertes IA Temps Réel</span></h3>
+            <p className="text-[#718096] text-center mb-8">Système de surveillance intelligente avec 200+ signaux analysés en temps réel</p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-2 rounded-lg bg-[#13612e]/10 text-[#13612e]"><Bell className="w-5 h-5" /></div>
+                  <h4 className="font-bold text-lg">Alertes Actives</h4>
+                  <span className="ml-auto flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-50 text-[#13612e] text-xs font-semibold"><span className="w-2 h-2 rounded-full bg-[#13612e] animate-pulse" /> Live</span>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    { type: "Opportunité", msg: "Surperformance Mines +4.2% en 24h", time: "Il y a 2 min", color: "border-l-[#13612e] bg-[#13612e]/5" },
+                    { type: "Risque", msg: "Volatilité FCFA/USD dépasse le seuil 2.1%", time: "Il y a 8 min", color: "border-l-[#D4942A] bg-[#D4942A]/5" },
+                    { type: "Info", msg: "Nouveau projet Agriculture validé (Accra)", time: "Il y a 15 min", color: "border-l-[#2B6CB0] bg-[#2B6CB0]/5" },
+                    { type: "Alerte", msg: "ROI Tech Lagos atteint le target 45%", time: "Il y a 32 min", color: "border-l-[#7C3AED] bg-[#7C3AED]/5" },
+                    { type: "Risque", msg: "Corrélation anormale détectée Énergie/Secteur", time: "Il y a 1h", color: "border-l-[#D4942A] bg-[#D4942A]/5" },
+                  ].map((a, i) => (
+                    <div key={i} className={`p-3 rounded-xl border-l-4 ${a.color} flex items-center gap-3`}>
+                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${a.type === "Opportunité" ? "bg-[#13612e] text-white" : a.type === "Risque" ? "bg-[#D4942A] text-white" : a.type === "Alerte" ? "bg-[#7C3AED] text-white" : "bg-[#2B6CB0] text-white"}`}>{a.type}</span>
+                      <p className="text-sm text-[#1A202C] flex-1">{a.msg}</p>
+                      <span className="text-xs text-[#718096] whitespace-nowrap">{a.time}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-2 rounded-lg bg-[#2B6CB0]/10 text-[#2B6CB0]"><Globe className="w-5 h-5" /></div>
+                  <h4 className="font-bold text-lg">Multi-Devises en Temps Réel</h4>
+                  <span className="ml-auto flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-[#2B6CB0] text-xs font-semibold"><RefreshCw className="w-3 h-3" /> Auto</span>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    { from: "EUR", to: "XOF", rate: "655.96", change: "+0.12%", flag1: "🇪🇺", flag2: "🇸🇳" },
+                    { from: "USD", to: "XOF", rate: "604.82", change: "-0.05%", flag1: "🇺🇸", flag2: "🇨🇮" },
+                    { from: "EUR", to: "NGN", rate: "1,632.50", change: "+0.34%", flag1: "🇪🇺", flag2: "🇳🇬" },
+                    { from: "USD", to: "GHS", rate: "12.85", change: "-0.18%", flag1: "🇺🇸", flag2: "🇬🇭" },
+                    { from: "GBP", to: "KES", rate: "193.42", change: "+0.08%", flag1: "🇬🇧", flag2: "🇰🇪" },
+                  ].map((c, i) => (
+                    <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-[#F7FAFC] hover:bg-gray-50 transition-colors">
+                      <div className="flex items-center gap-2">
+                        <span className="text-lg">{c.flag1}</span>
+                        <span className="text-sm font-bold">{c.from}</span>
+                        <span className="text-[#718096]"><RefreshCw className="w-3 h-3" /></span>
+                        <span className="text-lg">{c.flag2}</span>
+                        <span className="text-sm font-bold">{c.to}</span>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-sm font-bold text-[#1A202C]">{c.rate}</div>
+                        <div className={`text-xs font-semibold ${c.change.startsWith("+") ? "text-[#13612e]" : "text-red-500"}`}>{c.change}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Roadmap Timeline */}
+          <div>
+            <h3 className="text-2xl font-bold mb-2 text-center">Feuille de Route <span className="text-[#D4942A]">2026-2027</span></h3>
+            <p className="text-[#718096] text-center mb-10">Plan de développement avec un budget de 2.4M€ et un ROI projeté de 340%</p>
+            <div className="relative">
+              <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#2B6CB0] via-[#D4942A] to-[#13612e]" />
+              {[
+                { quarter: "T1 2026", title: "Alertes IA + Mobile MVP", items: ["Alpha alertes ML (50 testeurs)", "Wireframes app mobile", "Spécifications API Open Banking"], status: "En cours" },
+                { quarter: "T2 2026", title: "Mobile Beta + API v1", items: ["Alertes IA en production", "App mobile beta (200 téléchargements)", "Connecteurs bancaires Ecobank/UBA"], status: "Planifié" },
+                { quarter: "T3 2026", title: "Mobile Prod + ESG", items: ["App mobile en production", "Module ESG & Impact", "Compliance KYC/AML"], status: "Planifié" },
+                { quarter: "T4 2026", title: "White Label + API v2", items: ["White Label v1 (3 pilotes)", "API v2 avec webhooks", "Simulation Monte Carlo"], status: "Planifié" },
+                { quarter: "T1 2027", title: "Chatbot IA + GIS", items: ["White Label production (8 clients)", "Chatbot conseiller", "Cartographie géospatiale"], status: "Futur" },
+                { quarter: "T2 2027", title: "Scale & Optimisation", items: ["15 clients White Label", "5 000 utilisateurs actifs mobile", "ML avancé prédictif"], status: "Futur" },
+              ].map((step, i) => (
+                <div key={i} className={`relative flex items-start gap-6 mb-10 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
+                  <div className="absolute left-6 md:left-1/2 w-4 h-4 -translate-x-1/2 rounded-full border-4 border-white bg-[#2B6CB0] shadow-md z-10" />
+                  <div className={`hidden md:block w-5/12 ${i % 2 === 0 ? "text-right" : "text-left"}`}>
+                    <span className={`text-xs font-bold px-3 py-1 rounded-full ${step.status === "En cours" ? "bg-[#13612e] text-white" : step.status === "Planifié" ? "bg-[#2B6CB0]/10 text-[#2B6CB0]" : "bg-gray-100 text-[#718096]"}`}>{step.quarter}</span>
+                  </div>
+                  <div className="ml-14 md:ml-0 md:w-5/12 p-5 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                    <h4 className="font-bold text-base mb-3">{step.title}</h4>
+                    <ul className="space-y-2">
+                      {step.items.map((item, j) => (
+                        <li key={j} className="flex items-start gap-2 text-sm text-[#718096]">
+                          <CheckCircle2 className="w-4 h-4 text-[#13612e] mt-0.5 flex-shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════════
+          14. FOOTER
           ═══════════════════════════════════════════════════════════════════════ */}
       <footer className="relative bg-gradient-to-br from-[#0F1A2E] to-[#1A202C] text-white py-16">
         <div className="section-divider w-full absolute top-0 left-0 right-0" />
